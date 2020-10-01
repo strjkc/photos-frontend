@@ -1,0 +1,1 @@
+export const photoBaseUrl = 'http://localhost:5000/'

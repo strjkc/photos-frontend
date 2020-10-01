@@ -1,0 +1,43 @@
+.navBarStyle {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    color: #E5E5E5;
+    margin: 50px 0;
+    background-color: #1F201D;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.nav-item {
+    padding: 3px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #E5E5E5;
+    justify-self: center;
+}
+
+.nav-item:hover {
+    background-color: #333630;
+    border-radius: 3px;
+    transition: ease-in;
+    transition-duration: 200ms;
+    text-decoration: none;
+    color: #E5E5E5;
+}
+
+.active-item, .active-item:hover {
+    background-color: #FF0000;
+    border-radius: 3px;
+    transition: ease-in;
+    transition-duration: 100ms;
+    text-decoration: none;
+    color: #E5E5E5;
+}
+
+@media only screen and (min-width: 992px) {
+    .nav-item {
+        font-size: 19px
+    }
+
+}
+

@@ -1,0 +1,18 @@
+.featured-container{
+    width: 100vw;
+}
+.featured-image-container{
+    position: relative;
+}
+
+.featured-image-description{
+    position: absolute;
+    line-height: 1.5;
+    z-index: 2;
+    margin: 0;
+    bottom: 20%;
+    right: 3%;
+    width: 25%;
+    color: #E5E5E5;
+    text-align: left;
+}
