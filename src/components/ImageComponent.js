@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         mozBoxShadow: '-1px 4px 25px 0px rgba(51,54,48,1)',
         boxShadow: '0px 0px 50px -20px rgba(51,54,48,1)',
 //        backgroundColor: '#333630',
-        padding: '5px',
+//        padding: '5px',
         margin: '0 0 30px 0',
         boxSizing: 'border-box'
     },

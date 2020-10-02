@@ -42,9 +42,10 @@ const MainPage = ({photos, uploadPhoto, setIsFeatured, setDescription, descripti
     return(
         <div className={css(styles.mainContainer)}>
             <LoginComponent login={login} setUser={setUser} />
-            <HeaderComponent setUser={setUser} login={login}/>
             <Router>
-                <NavBar user={user} ref={activeTabRef}/>
+            <HeaderComponent setUser={setUser} login={login}>
+                <NavBar user={user} login={login} ref={activeTabRef}/>
+            </HeaderComponent>
                 <Switch>
                 <Redirect exact from='/' to='/featured' />
                     <Route path='/featured'>

@@ -3,9 +3,10 @@ import './nav.css'
 import {Link, useLocation} from 'react-router-dom'
 import {fadeIn} from 'react-animations'
 import {StyleSheet, css} from 'aphrodite'
-const NavBar = React.forwardRef( ({user}, ref) => {
+const NavBar = React.forwardRef( ({user, login}, ref) => {
     const location = useLocation()
     const [activeTabId, setActiveTabId] = useState(location.pathname.substring(1))
+    const [loginText, setLoginText] = useState(false)
 
     console.log('activeTab', activeTabId)
     const handleClick = (e) => {
@@ -21,9 +22,8 @@ const NavBar = React.forwardRef( ({user}, ref) => {
     const styles = StyleSheet.create({
         navStyle: {
             display: 'grid',
-            gridTemplateColumns: user ? 'repeat(5, 1fr)' : 'repeat(4, 1fr)',
+            gridTemplateColumns: 'repeat(5, 1fr)',
             color: '#E5E5E5',
-            margin: '50px 0',
             backgroundColor: '#1F201D',
             padding: '10px',
             borderRadius: '5px'
@@ -64,8 +64,20 @@ const NavBar = React.forwardRef( ({user}, ref) => {
             '@media only screen and (min-width: 992px)': {
                 fontSize: '19px'
             }
+        },
+        login:{
+            display: user ? 'none' : '' 
         }
     })
+
+
+    
+    
+    const handleLoginClick = () => {
+        login.setDisplayLogin(!login.displayLogin)
+        setLoginText(!loginText)
+    }
+
 
 
 
@@ -76,6 +88,10 @@ const NavBar = React.forwardRef( ({user}, ref) => {
                 <Link className={ activeTabId === 'equipment' ? 'nav-item active-item' : 'nav-item' } id='equipment' onClick={handleClick} to='/equipment'>Equipment</Link>
                 <Link className={ activeTabId === 'about' ? 'nav-item active-item' : 'nav-item' } id='about' onClick={handleClick} to='/about'>About me</Link>
                 <Link className={ activeTabId === 'upload' ? css(styles.displayUpload, styles.displayUploadAnim, styles.navItem, styles.activeItem, styles.fontLarge) : css(styles.fontLarge, styles.displayUpload, styles.itemHover, styles.navItem, styles.displayUploadAnim) } id='upload' onClick={handleClick} to='/upload' >Upload</Link>
+                <button className={css(styles.login)}  onClick={handleLoginClick} id='login' type='button'>
+                Log in
+            </button>
+          
             </div>
     )
 })
