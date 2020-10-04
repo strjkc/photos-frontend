@@ -52,7 +52,7 @@ function App() {
     <div style={{display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#141513',
+    backgroundColor: '#0A090B',
     width: '100vw',
     
     }} onClick={rootClick}>

@@ -3,19 +3,22 @@ import {StyleSheet, css} from 'aphrodite'
 
 const styles = StyleSheet.create({
     wrapper: {
-        display: 'grid',
-        gridTemplateRows: 'repeat(3, 300px)',
+        display: 'flex',
+        flexDirection: 'column',
+        margin: '50px 0'
     },
     elementContainer: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        overflow: 'hidden'
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        overflow: 'hidden',
+        marginBottom: '10px'
     },
     imageContainer: {
         justifySelf: 'center',
         alignSelf: 'center',
-        height: '80%',
-        width: '80%',
+        height: '100%',
+        width: '50%',
         backgroundColor: '#333630',
         padding: '5px',
         boxSizing: 'border-box'
@@ -25,7 +28,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     text: {
-        width: '70%',
+        width: '40%',
         textAlign: 'justify',
         justifySelf: 'center',
         alignSelf: 'center',

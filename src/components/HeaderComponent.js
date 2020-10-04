@@ -11,9 +11,9 @@ const HeaderComponent = ({setUser, children, login}) => {
         <div className='header-container'>
             <div className='title-container'>
                 <h1>Strahinja's Gallery</h1>
-                <p>by me for me (and you, the visitor, I guess <span><i className="em em-slightly_smiling_face" aria-label="SLIGHTLY SMILING FACE"></i></span> )</p>
+                <div className='title-underline'></div>
             </div>
-            <div className='login-container'>
+            <div className='nav-container'>
                 {children}
             </div>
         </div>

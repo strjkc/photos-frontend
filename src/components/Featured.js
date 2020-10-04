@@ -3,6 +3,10 @@ import './featured.css'
 import {StyleSheet, css} from 'aphrodite'
 
 const styles = StyleSheet.create({
+    container: {
+        margin: '50px 0'
+
+    },
     noPhotoText: {
         color: '#E5E5E5',
         padding: '20px 0'
@@ -20,7 +24,7 @@ const Featured = ({featured}) => {
 
 
     return(
-        <div>
+        <div className={styles.container}>
             { featured.length > 0
             ?   <div className='featured-container'>
                     {elements}

@@ -31,12 +31,12 @@ const MainPage = ({photos, uploadPhoto, setIsFeatured, setDescription, descripti
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backgroundColor: '#141513'
+                backgroundColor: '#0A090B'
             },
             noPictures: {
                 color: '#E5E5E5',
                 padding: '20px 0'
-            }
+            },
         }
     )
     return(

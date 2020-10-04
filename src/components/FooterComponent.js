@@ -9,6 +9,7 @@ const FooterComponent = () => {
 
     return(
         <div className='footer-container' style={footerStyle}>
+            <p>by me for me (and you, the visitor, I guess <span><i className="em em-slightly_smiling_face" aria-label="SLIGHTLY SMILING FACE"></i></span> )</p>
             <div >
                 <p>Source:</p>
                 <div className='source'>

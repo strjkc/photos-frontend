@@ -5,12 +5,13 @@ import {StyleSheet, css} from 'aphrodite'
 const styles = StyleSheet.create({
     imageContainer: {
         position: 'relative',
-        transitionDuration: '400ms',
+//        transitionDuration: '400ms',
         webkitBoxShadow: '-1px 4px 25px 0px rgba(51,54,48,1)',
         mozBoxShadow: '-1px 4px 25px 0px rgba(51,54,48,1)',
         boxShadow: '0px 0px 50px -20px rgba(51,54,48,1)',
 //        backgroundColor: '#333630',
 //        padding: '5px',
+        overflow: 'hidden',
         margin: '0 0 30px 0',
         boxSizing: 'border-box'
     },
@@ -44,9 +45,9 @@ const styles = StyleSheet.create({
 
 const ImageComponent = ({photo, children}) => {
     return(
-        <div className={css(styles.imageContainer, styles.imageContainerHover, styles.descriptionReveal)}>
+        <div className={css(styles.imageContainer,  styles.descriptionReveal)}>
             {children}
-            <img src={photo.thumbnail} alt='Heyyyy' style={{width: '100%',
+            <img className={css(styles.imageContainerHover,)} src={photo.thumbnail} alt='Heyyyy' style={{width: '100%',
         maxHeight: '100%',
         display: 'block'}}></img>
             <p className={`${css(styles.descritpion)} image-description`}>{photo.description}</p>  
