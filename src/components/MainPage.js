@@ -24,10 +24,9 @@ const MainPage = ({photos, setPhotos, uploadPhoto, setFeatured, setDescription, 
     const activeTabRef = useRef()
     console.log('featured len', featured.length)
 
-    const toggleFeatured = async (photoToRemove) => {
-        await services.updatePhoto(photoToRemove)
+    const toggleFeatured = (photoToRemove) => {
+        services.updatePhoto(photoToRemove)
         const changed = photos.find(photo => photo.id === photoToRemove.id)
-        console.log('changed', changed)
         photos[photos.indexOf(changed)].isFeatured = !changed.isFeatured
         setFeatured(photos.filter(photo => photo.isFeatured === true))
     }
