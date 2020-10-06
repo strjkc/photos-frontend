@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
     wrapper: {
         display: 'flex',
         flexDirection: 'column',
-        margin: '50px 0'
     },
     elementContainer: {
         display: 'flex',

@@ -26,7 +26,7 @@ function App() {
           console.log(featuredPhotos)
           featuredPhotos.length > 0
           ? setFeatured(featuredPhotos)
-          : setFeatured(null)
+          : setFeatured([])
         }
       })
     }, [image])
@@ -56,7 +56,7 @@ function App() {
     width: '100vw',
     
     }} onClick={rootClick}>
-      <MainPage uploadPhoto={uploadPhoto} setImage={setImage} setDescription={setDescription} setIsFeatured={setIsFeatured} setUser={setUser} user={user} photos={photos} featured={featured} login={{displayLogin, setDisplayLogin}}/>
+      <MainPage uploadPhoto={uploadPhoto} setPhotos={setPhotos} setImage={setImage} setDescription={setDescription} setFeatured={setFeatured} setIsFeatured={setIsFeatured} setUser={setUser} user={user} photos={photos} featured={featured} login={{displayLogin, setDisplayLogin}}/>
     </div>
   );
 }

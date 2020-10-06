@@ -26,8 +26,8 @@ const deletePhoto = async (id) => {
     return response.data
 }
 
-const updatePhoto = async (featuredCurrentValue, id) => {
-    const response = await axios.put(`/photos/${id}`, {isFeatured: featuredCurrentValue})
+const updatePhoto = async (photo) => {
+    const response = await axios.put(`/photos/${photo.id}`, photo)
     return response.data
 }
 

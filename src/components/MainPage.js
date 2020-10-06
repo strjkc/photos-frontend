@@ -17,12 +17,32 @@ import LoginComponent from './LoginComponent'
 import About from './About'
 import Equipment from './Equipment'
 import EditComponent from './EditComponent'
+import services from '../utils/services'
 
-const MainPage = ({photos, uploadPhoto, setIsFeatured, setDescription, description, setImage, isFeatured, featured, user, setUser, login}) => {
+const MainPage = ({photos, setPhotos, uploadPhoto, setFeatured, setDescription, description, setImage, isFeatured, setIsFeatured, featured, user, setUser, login}) => {
     console.log('photos??', photos.length)
     const activeTabRef = useRef()
+    console.log('featured len', featured.length)
 
-    console.log('refref',activeTabRef.current)
+    const toggleFeatured = async (photoToRemove) => {
+        await services.updatePhoto(photoToRemove)
+        const changed = photos.find(photo => photo.id === photoToRemove.id)
+        console.log('changed', changed)
+        photos[photos.indexOf(changed)].isFeatured = !changed.isFeatured
+        setFeatured(photos.filter(photo => photo.isFeatured === true))
+    }
+
+    const removePhoto = (id) => {
+        services.deletePhoto(id)
+        if (photos.lenght > 0) {
+            setPhotos(
+                photos.filter(photo => photo.id !== id)
+            )
+        } else {
+            setPhotos([])
+        }
+        
+    }
 
     const styles = StyleSheet.create(
         {
@@ -56,7 +76,12 @@ const MainPage = ({photos, uploadPhoto, setIsFeatured, setDescription, descripti
                             photos.length > 0
                             ?   <Container style={{width: '100%', margin: '0', padding: '0'}}>
                                     <Row lg={3} className='h-100'> 
-                                        {photos.map(photo => <Col key={photo.id} className='column' lg={4}><ImageComponent photo={photo}><EditComponent user={user} photo={photo}/></ImageComponent></Col>)}
+                                        {photos.map(photo => 
+                                        <Col key={photo.id} className='column' lg={4}>
+                                            <ImageComponent photo={photo}>
+                                                <EditComponent toggleFeatured={toggleFeatured} removePhoto={removePhoto} user={user} photo={photo}/>
+                                            </ImageComponent>
+                                        </Col>)}
                                     </Row>
                                 </Container>
                             : <p className={css(styles.noPictures)}>No pictures to display</p>

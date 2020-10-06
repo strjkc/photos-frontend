@@ -1,58 +1,63 @@
-import React from 'react'
+import React,{useState} from 'react'
 //import './imageComponent.css'
 import {StyleSheet, css} from 'aphrodite'
 
 const styles = StyleSheet.create({
     imageContainer: {
         position: 'relative',
-//        transitionDuration: '400ms',
-        webkitBoxShadow: '-1px 4px 25px 0px rgba(51,54,48,1)',
-        mozBoxShadow: '-1px 4px 25px 0px rgba(51,54,48,1)',
-        boxShadow: '0px 0px 50px -20px rgba(51,54,48,1)',
-//        backgroundColor: '#333630',
-//        padding: '5px',
         overflow: 'hidden',
         margin: '0 0 30px 0',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        transition: 'ease-in 400ms'
     },
-    imageContainerHover: {
-        ':hover': {
-            transform: 'scale(1.1)',
-            transitionDuration: '400ms'
-        }
+    image: {
+        width: '100%',
+        maxHeight: '100%',
+        display: 'block',
+        transition: '400ms'
+    },
+    imageHover: {
+            transform: 'scale(1.08)',
+            transition: '400ms',
+            zIndex: '0'
     },
     descriptionReveal: {
-        ':hover .image-description': {
+            display: 'block',
+           position: 'absolute',
             transition: 'ease-in',
-            transitionDelay: '150ms',
             transitionDuration: '900ms',
+            transitionDelay: '150ms',
             zIndex: '2',
-            backgroundColor: 'rgba(51,54,48,0.7)',
-            width: '98%',
+            backgroundColor: 'rgba(100,100,200, 0.7)',
+            width: '90%',
+            borderRadius: '10px',
             height: '25%',
-            color: '#E5E5E5'
-        }
+            padding: '5px',
+            color: '#E5E5E5',
+            bottom: '5px',
+            left: '5%'
     },
     descritpion: {
-        padding: '5px',
         position: 'absolute',
-        bottom: '0',
-        zIndex: '-1',
-        margin: '0',
-        overflow: 'hidden',
+        padding: '5px',
+        borderRadius: '10px',
+
+            zIndex: '-1'
+
     }
 })
 
 const ImageComponent = ({photo, children}) => {
+
+    const [containerHovered, setContainerHovered] = useState(false)
+
+
     return(
-        <div className={css(styles.imageContainer,  styles.descriptionReveal)}>
+        <div onMouseOver={() => setContainerHovered(true)} onMouseLeave={() => setContainerHovered(false)} className={css(styles.imageContainer)}>
             {children}
-            <img className={css(styles.imageContainerHover,)} src={photo.thumbnail} alt='Heyyyy' style={{width: '100%',
-        maxHeight: '100%',
-        display: 'block'}}></img>
-            <p className={`${css(styles.descritpion)} image-description`}>{photo.description}</p>  
+            <img className={containerHovered ? css(styles.imageHover, styles.image) : css(styles.image)} src={photo.thumbnail} alt='overview'></img>
+            <p className={containerHovered ? css(styles.descriptionReveal) : css(styles.descritpion)}>{photo.description}</p>  
         </div>
-        
     )
 }
 

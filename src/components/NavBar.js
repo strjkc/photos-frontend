@@ -9,7 +9,6 @@ const NavBar = React.forwardRef( ({user, login}, ref) => {
     const [loginText, setLoginText] = useState(false)
     const [hovered, setHovered] = useState('')
 
-    console.log('activeTab', activeTabId)
     const handleClick = (e) => {
         setActiveTabId(e.target.id)
     }
@@ -115,7 +114,6 @@ const NavBar = React.forwardRef( ({user, login}, ref) => {
         setLoginText(!loginText)
     }
 
-    console.log(user)
 
     return (
             <div className={css(styles.navStyle)}>
