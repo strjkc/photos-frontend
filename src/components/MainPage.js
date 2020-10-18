@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import {
     BrowserRouter as Router,
     Switch, Route, Redirect
@@ -18,11 +18,11 @@ import About from './About'
 import Equipment from './Equipment'
 import EditComponent from './EditComponent'
 import services from '../utils/services'
+import FullImage from './FullImage'
 
-const MainPage = ({photos, setPhotos, uploadPhoto, setFeatured, setDescription, description, setImage, isFeatured, setIsFeatured, featured, user, setUser, login}) => {
-    console.log('photos??', photos.length)
+const MainPage = ({photos, setPhotos, uploadPhoto, setFeatured, setDescription, description, setImage, image, isFeatured, setIsFeatured, featured, user, setUser, login}) => {
     const activeTabRef = useRef()
-    console.log('featured len', featured.length)
+    const [displayFullImage, setDisplayFullImage] = useState(null) 
 
     const toggleFeatured = (photoToRemove) => {
         services.updatePhoto(photoToRemove)
@@ -31,16 +31,10 @@ const MainPage = ({photos, setPhotos, uploadPhoto, setFeatured, setDescription, 
         setFeatured(photos.filter(photo => photo.isFeatured === true))
     }
 
-    const removePhoto = (id) => {
-        services.deletePhoto(id)
-        if (photos.lenght > 0) {
-            setPhotos(
-                photos.filter(photo => photo.id !== id)
-            )
-        } else {
-            setPhotos([])
-        }
-        
+    const removePhoto = (photoToRemove) => {
+        services.deletePhoto(photoToRemove.id)
+        setPhotos(photos.filter(photo => photo.id !== photoToRemove.id))
+        toggleFeatured(photoToRemove)
     }
 
     const styles = StyleSheet.create(
@@ -65,6 +59,7 @@ const MainPage = ({photos, setPhotos, uploadPhoto, setFeatured, setDescription, 
             <HeaderComponent setUser={setUser} login={login}>
                 <NavBar user={user} login={login} ref={activeTabRef}/>
             </HeaderComponent>
+            {displayFullImage ? <FullImage setDisplayFullImage={setDisplayFullImage} displayFullImage={displayFullImage}/> : <></>}
                 <Switch>
                 <Redirect exact from='/' to='/featured' />
                     <Route path='/featured'>
@@ -77,7 +72,7 @@ const MainPage = ({photos, setPhotos, uploadPhoto, setFeatured, setDescription, 
                                     <Row lg={3} className='h-100'> 
                                         {photos.map(photo => 
                                         <Col key={photo.id} className='column' lg={4}>
-                                            <ImageComponent photo={photo}>
+                                            <ImageComponent photo={photo} setDisplayFullImage={setDisplayFullImage}>
                                                 <EditComponent toggleFeatured={toggleFeatured} removePhoto={removePhoto} user={user} photo={photo}/>
                                             </ImageComponent>
                                         </Col>)}
@@ -90,7 +85,7 @@ const MainPage = ({photos, setPhotos, uploadPhoto, setFeatured, setDescription, 
                         <About />
                     </Route>
                     <Route path='/upload'>
-                        <UploadComponent resetTab={activeTabRef} setUser={setUser} description={description} isFeatured={isFeatured} setIsFeatured={setIsFeatured} setDescription={setDescription} uploadPhoto={uploadPhoto} setImage={setImage} />
+                        <UploadComponent resetTab={activeTabRef} setUser={setUser} description={description} isFeatured={isFeatured} image={image} setIsFeatured={setIsFeatured} setDescription={setDescription} uploadPhoto={uploadPhoto} setImage={setImage} />
                     </Route>
                     <Route path='/equipment'>
                         <Equipment />

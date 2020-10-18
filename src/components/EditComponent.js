@@ -38,7 +38,7 @@ const EditComponent = ({user, photo, toggleFeatured, removePhoto}) => {
     return(
         <div className={css(styles.container)}>
             <FontAwesomeIcon className={photo.isFeatured ? css(styles.featuredIcon, styles.favHover) : css(styles.iconStyle, styles.favHover)} icon={faStar} onClick={() => toggleFeatured(photo)}></FontAwesomeIcon>
-            <FontAwesomeIcon className={css(styles.iconStyle, styles.deleteHover)} icon={faTrashAlt} onClick={() => removePhoto(photo.id)}></FontAwesomeIcon>
+            <FontAwesomeIcon className={css(styles.iconStyle, styles.deleteHover)} icon={faTrashAlt} onClick={() => removePhoto(photo)}></FontAwesomeIcon>
         </div>
     )
 }

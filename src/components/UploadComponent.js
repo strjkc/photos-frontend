@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         resize: 'none',
         backgroundColor: '#1F201D',
         borderRadius: '5px',
+        color: '#E5E5E5'
     },
     inputFiledPlaceholder:{
         "::placeholder": {
@@ -81,25 +82,42 @@ const styles = StyleSheet.create({
     }
 })
 
-const UploadComponent = ({description, setUser, resetTab, setDescription, uploadPhoto, setImage, isFeatured, setIsFeatured}) => {
+const UploadComponent = ({description, setUser, resetTab, setDescription, uploadPhoto, setImage, image, isFeatured, setIsFeatured}) => {
     const history = useHistory()
-    console.log(resetTab)
+    const imageInput = React.useRef()
+    const checkBoxInput = React.useRef()
+
     const logOut = () => {
         window.localStorage.removeItem('user')
         history.push('/featured')
         resetTab.current.resetTab()
         setUser(null)
     }
+
+    console.log('isFeatured',isFeatured)
+    console.log('image', image)
+
+    const dumb = async (e) => {
+        e.preventDefault()
+        console.log('target now',e.target.input)
+        await uploadPhoto()
+        imageInput.current.value = ''
+        checkBoxInput.current.checked = false
+        setIsFeatured(false)
+        setImage(null) 
+        setDescription('') 
+    }
+
     return(
     <div className={css(styles.wrapper)}>
         <h3 className={css(styles.title)}>Upload Photo</h3>
-        <form onSubmit={uploadPhoto} className={css(styles.formStyle)}>
-          <input type='file' className={css(styles.formChildren)}  onChange={({target}) => setImage(target.files[0])}></input>
+        <form onSubmit={dumb} className={css(styles.formStyle)}>
+          <input ref={imageInput}type='file' className={css(styles.formChildren)} onChange={({target}) => setImage(target.files[0])}></input>
           <div className={css(styles.descriptionWrapper)}>
             <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder='Describe the photo' value={description} onChange={({target}) => setDescription(target.value)}></textarea>
               <div className={css(styles.formChildren, styles.checkBox)}>
                 <label for='upload-checkbox' className={css(styles.checkBox)} >Is featured</label>
-                <input type='checkbox' id='upload-checkbox' onChange={(e) => setIsFeatured(!isFeatured)}></input>
+            <input ref={checkBoxInput} type='checkbox' id='upload-checkbox' onChange={(e) => setIsFeatured(!isFeatured)}></input>
               </div>
           </div>
             <button type='submit' className={css(styles.button, styles.buttonHover, styles.formChildren)}>Upload</button>

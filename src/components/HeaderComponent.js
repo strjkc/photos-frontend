@@ -2,7 +2,11 @@ import React, {useState} from 'react'
 import './headerComponent.css'
 import './NavBar'
 import NavBar from './NavBar'
+import {StyleSheet, css} from 'aphrodite'
 
+const styles = StyleSheet.create({
+    
+})
 
 const HeaderComponent = ({setUser, children, login}) => {
 
@@ -13,7 +17,7 @@ const HeaderComponent = ({setUser, children, login}) => {
                 <h1>Strahinja's Gallery</h1>
                 <div className='title-underline'></div>
             </div>
-            <div className='nav-container'>
+            <div>
                 {children}
             </div>
         </div>

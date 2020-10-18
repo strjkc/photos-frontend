@@ -26,9 +26,24 @@ const deletePhoto = async (id) => {
     return response.data
 }
 
+const download = async (id, name) => {
+    axios({
+        url: `/photos/download/${id}`,
+        method: 'GET',
+        responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', name);
+        document.body.appendChild(link);
+        link.click();
+      });
+    }
+
 const updatePhoto = async (photo) => {
     const response = await axios.put(`/photos/${photo.id}`, photo)
     return response.data
 }
 
-export default {postPhoto, getPhotos, login, deletePhoto, updatePhoto}
+export default {postPhoto, getPhotos, login, deletePhoto, updatePhoto, download}

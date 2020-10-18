@@ -32,14 +32,12 @@ function App() {
     }, [image])
 
     console.log('featured', featured)
-  const uploadPhoto = (e) => {
-    e.preventDefault()
+  const uploadPhoto = async () => {
     const formData = new FormData()
     formData.append('image',image)
     formData.append('description', description)
     formData.append('isFeatured', isFeatured)
-    services.postPhoto(formData)
-    .then(() => setImage(null))
+    await services.postPhoto(formData)
   }
 
   const rootClick =(e) =>{
@@ -56,7 +54,7 @@ function App() {
     width: '100vw',
     
     }} onClick={rootClick}>
-      <MainPage uploadPhoto={uploadPhoto} setPhotos={setPhotos} setImage={setImage} setDescription={setDescription} setFeatured={setFeatured} setIsFeatured={setIsFeatured} setUser={setUser} user={user} photos={photos} featured={featured} login={{displayLogin, setDisplayLogin}}/>
+      <MainPage isFeatured={isFeatured} image={image} uploadPhoto={uploadPhoto} setPhotos={setPhotos} setImage={setImage} description={description} setDescription={setDescription} setFeatured={setFeatured} setIsFeatured={setIsFeatured} setUser={setUser} user={user} photos={photos} featured={featured} login={{displayLogin, setDisplayLogin}}/>
     </div>
   );
 }
