@@ -1,16 +1,18 @@
-import React, { useState, useImperativeHandle} from 'react'
-//import './nav.css'
+import React, { useState, useImperativeHandle, useCallback} from 'react'
+import { HamburgerCollapseReverse } from 'react-animated-burgers'
 import {Link, useLocation} from 'react-router-dom'
 import {fadeIn} from 'react-animations'
 import {StyleSheet, css} from 'aphrodite'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faBars} from '@fortawesome/free-solid-svg-icons'
 const NavBar = React.forwardRef( ({user, login}, ref) => {
     const location = useLocation()
     const [activeTabId, setActiveTabId] = useState(location.pathname.substring(1))
     const [loginText, setLoginText] = useState(false)
     const [hovered, setHovered] = useState('')
-
+    const [isActive, setIsActive] = useState(false)
+    const toggleButton = useCallback(
+        () => setIsActive(prevState => !prevState),
+        [],
+      )
     console.log('hover', hovered)
     console.log('active',activeTabId)
 
@@ -106,21 +108,35 @@ const NavBar = React.forwardRef( ({user, login}, ref) => {
             border: 'none',
             outline: 'none' 
         },
-        hamburger: {
+        hamburgerDisplay: {
             '@media only screen and (min-width: 800px)': {
                 display: 'none'
             }
-        },
-        sidebar: {
-            height: '100vh',
-            width: '40vw',
-            backgroundColor: 'green'
         },
         navElements: {
             '@media only screen and (max-width: 800px)': {
                 display: 'none'
             }
-        }
+        },
+        hiddenNav: {
+            display: isActive ? 'flex' : 'none',
+            width: '200px',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'absolute',
+            zIndex: '10',
+            backgroundColor: 'green',
+            right: '25px',
+            padding: '10px',
+            borderRadius: '10px'
+        },
+        hiddenNavItem: {
+                width: '100px',
+                height: '30px',
+                margin: '5px',
+                textAlign: 'center'
+        },
         
     })
         
@@ -147,8 +163,37 @@ const NavBar = React.forwardRef( ({user, login}, ref) => {
                 <div className={activeTabId === 'about'  ? css(styles.underbarAb) : hovered === 'about' ? css(styles.underbarAb) : css(styles.underbar)}></div>
                 <div className={activeTabId === 'upload' ? css(styles.underbarUp) : hovered === 'upload' ? css(styles.underbarUp) : hovered === 'login' ? css(styles.underbarUp) : css(styles.underbar)}></div>
             </div>
-            <div className={css(styles.hamburger)}>
-                <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+            <div className={css(styles.hamburgerDisplay)}>
+                <HamburgerCollapseReverse 
+                    barColor="white"
+                    buttonWidth={25}
+                    className={css(styles.hamburger)}
+                    {...{ isActive, toggleButton }}/>
+            </div>
+            <div className={css(styles.hiddenNav)}>
+                <div className={css(styles.hiddenNavItem)}>
+                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='featured' onClick={handleClick} to='/featured'>Featured</Link>
+                <div className={activeTabId === 'featured'  ? css(styles.underbarFeat) : hovered === 'featured' ? css(styles.underbarFeat) : css(styles.underbar)}></div>
+                </div>
+                <div className={css(styles.hiddenNavItem)}>
+                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='overview' onClick={handleClick} to='/overview'>Overview</Link>
+                <div className={activeTabId === 'overview'  ? css(styles.underbarOv) : hovered === 'overview' ? css(styles.underbarOv) : css(styles.underbar)}></div>
+                </div>
+                <div className={css(styles.hiddenNavItem)}>
+                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='equipment' onClick={handleClick} to='/equipment'>Equipment</Link>
+                <div className={activeTabId === 'equipment'  ? css(styles.underbarEq) : hovered === 'equipment' ? css(styles.underbarEq) : css(styles.underbar)}></div>
+                </div>
+                <div className={css(styles.hiddenNavItem)}>
+                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='about' onClick={handleClick} to='/about'>About me</Link>
+                <div className={activeTabId === 'about'  ? css(styles.underbarAb) : hovered === 'about' ? css(styles.underbarAb) : css(styles.underbar)}></div>
+                </div>
+                <div className={css(styles.hiddenNavItem)}>
+                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.displayUpload, styles.displayUploadAnim, styles.navItem)} id='upload' onClick={handleClick} to='/upload' >Upload</Link>
+                <div className={activeTabId === 'upload' ? css(styles.underbarUp) : hovered === 'upload' ? css(styles.underbarUp) : hovered === 'login' ? css(styles.underbarUp) : css(styles.underbar)}></div>            
+                </div>
+                <button onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.login, styles.navItem)}  onClick={handleLoginClick} id='login' type='button'>
+                Log in
+                </button>
             </div>
         </>
     )
