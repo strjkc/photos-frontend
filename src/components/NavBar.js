@@ -57,7 +57,7 @@ const NavBar = React.forwardRef( ({user, login}, ref) => {
           },
           underbarFeat: {            
             width: '95%',
-            justifySelf: 'left',
+            justifySelf: 'center',
             height: '5px',
             transition: '0.5s ease',
             background: '#6464c8',
@@ -65,21 +65,21 @@ const NavBar = React.forwardRef( ({user, login}, ref) => {
           },
           underbarOv: {            
             width: '95%',
-            justifySelf: 'left',
+            justifySelf: 'center',
             height: '5px',
             transition: '0.5s ease',
             background: '#c86464',
           },
           underbarEq: {            
             width: '95%',
-            justifySelf: 'left',
+            justifySelf: 'center',
             height: '5px',
             transition: '0.5s ease',
             background: 'rgba(150, 250, 250, 0.5)',
           },
           underbarAb: {            
             width: '95%',
-            justifySelf: 'left',
+            justifySelf: 'center',
             height: '5px',
             transition: '0.5s ease',
             background: 'rgba(150, 250, 250, 0.5)',
@@ -119,19 +119,20 @@ const NavBar = React.forwardRef( ({user, login}, ref) => {
             }
         },
         hiddenNav: {
-            display: isActive ? 'flex' : 'none',
+            display: isActive ? 'grid' : 'none',
             width: '200px',
-            flexDirection: 'column',
-            justifyContent: 'center',
+            gridTemplateRows: 'repeat(5, 1fr)',
             alignItems: 'center',
+            justifyContent: 'center',
             position: 'absolute',
             zIndex: '10',
-            backgroundColor: 'green',
+            backgroundColor: 'rgb(31, 32, 29)',
             right: '25px',
             padding: '10px',
             borderRadius: '10px'
         },
         hiddenNavItem: {
+                display: 'grid',
                 width: '100px',
                 height: '30px',
                 margin: '5px',
@@ -170,26 +171,26 @@ const NavBar = React.forwardRef( ({user, login}, ref) => {
                     className={css(styles.hamburger)}
                     {...{ isActive, toggleButton }}/>
             </div>
-            <div className={css(styles.hiddenNav)}>
+            <div className={css(styles.hiddenNav)} id='hidden-nav'>
                 <div className={css(styles.hiddenNavItem)}>
-                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='featured' onClick={handleClick} to='/featured'>Featured</Link>
-                <div className={activeTabId === 'featured'  ? css(styles.underbarFeat) : hovered === 'featured' ? css(styles.underbarFeat) : css(styles.underbar)}></div>
+                    <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='featured' onClick={handleClick} to='/featured'>Featured</Link>
+                    <div className={activeTabId === 'featured'  ? css(styles.underbarFeat) : hovered === 'featured' ? css(styles.underbarFeat) : css(styles.underbar)}></div>
                 </div>
                 <div className={css(styles.hiddenNavItem)}>
-                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='overview' onClick={handleClick} to='/overview'>Overview</Link>
-                <div className={activeTabId === 'overview'  ? css(styles.underbarOv) : hovered === 'overview' ? css(styles.underbarOv) : css(styles.underbar)}></div>
+                    <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='overview' onClick={handleClick} to='/overview'>Overview</Link>
+                    <div className={activeTabId === 'overview'  ? css(styles.underbarOv) : hovered === 'overview' ? css(styles.underbarOv) : css(styles.underbar)}></div>
                 </div>
                 <div className={css(styles.hiddenNavItem)}>
-                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='equipment' onClick={handleClick} to='/equipment'>Equipment</Link>
-                <div className={activeTabId === 'equipment'  ? css(styles.underbarEq) : hovered === 'equipment' ? css(styles.underbarEq) : css(styles.underbar)}></div>
+                    <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='equipment' onClick={handleClick} to='/equipment'>Equipment</Link>
+                    <div className={activeTabId === 'equipment'  ? css(styles.underbarEq) : hovered === 'equipment' ? css(styles.underbarEq) : css(styles.underbar)}></div>
                 </div>
                 <div className={css(styles.hiddenNavItem)}>
-                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='about' onClick={handleClick} to='/about'>About me</Link>
-                <div className={activeTabId === 'about'  ? css(styles.underbarAb) : hovered === 'about' ? css(styles.underbarAb) : css(styles.underbar)}></div>
+                    <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='about' onClick={handleClick} to='/about'>About me</Link>
+                    <div className={activeTabId === 'about'  ? css(styles.underbarAb) : hovered === 'about' ? css(styles.underbarAb) : css(styles.underbar)}></div>
                 </div>
                 <div className={css(styles.hiddenNavItem)}>
-                <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.displayUpload, styles.displayUploadAnim, styles.navItem)} id='upload' onClick={handleClick} to='/upload' >Upload</Link>
-                <div className={activeTabId === 'upload' ? css(styles.underbarUp) : hovered === 'upload' ? css(styles.underbarUp) : hovered === 'login' ? css(styles.underbarUp) : css(styles.underbar)}></div>            
+                    <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.displayUpload, styles.displayUploadAnim, styles.navItem)} id='upload' onClick={handleClick} to='/upload' >Upload</Link>
+                    <div className={activeTabId === 'upload' ? css(styles.underbarUp) : hovered === 'upload' ? css(styles.underbarUp) : hovered === 'login' ? css(styles.underbarUp) : css(styles.underbar)}></div>            
                 </div>
                 <button onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.login, styles.navItem)}  onClick={handleLoginClick} id='login' type='button'>
                 Log in
