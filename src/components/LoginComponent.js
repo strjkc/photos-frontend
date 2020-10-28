@@ -2,14 +2,18 @@ import React, {useState} from 'react'
 import {fadeInDownBig, fadeIn} from 'react-animations'
 import {StyleSheet, css} from 'aphrodite'
 import services from '../utils/services'
+import {hideLogin} from '../reducers/loginReducer'
+import {useSelector} from 'react-redux'
 
 const LoginComponent = ({login, setUser}) => {
     
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const state = useSelector(store => store.displayLogin)
+    console.log('Login state', state)
     const styles = StyleSheet.create( {  
         loginForm: {
-            display: login.displayLogin ? 'flex' : 'none',
+            display: state ? 'flex' : 'none',
             height: '30%',
             flexDirection: 'column',
             alignItems: 'center',
@@ -45,7 +49,7 @@ const LoginComponent = ({login, setUser}) => {
             animationDuration: '1s'
         },
         modalBackground:{
-            display: login.displayLogin ? 'flex' : 'none',
+            display: state ? 'flex' : 'none',
             position: 'absolute', zIndex:'4', 
             backgroundColor: 'rgba(0, 0, 0, 0.3)', 
             width: '100vw', 
@@ -84,7 +88,7 @@ const LoginComponent = ({login, setUser}) => {
                 setUser(response)
                 window.localStorage.setItem('user', JSON.stringify(response))
             })
-        login.setDisplayLogin(false)
+            hideLogin()
     }
  
     return (

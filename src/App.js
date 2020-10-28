@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 import MainPage from './components/MainPage'
 import services from './utils/services'
+import {hideLogin} from './reducers/loginReducer'
 
 function App() {
+  const dispatch = useDispatch()
+  const loginState = useSelector(store => store.displayLogin)
   const [image, setImage] = useState(null)
   const [featured, setFeatured] = useState([])
   const [user, setUser] = useState(null)
@@ -23,7 +27,6 @@ function App() {
         setPhotos(response)
         if (response.length > 0) {
           const featuredPhotos = response.filter(photo => photo.isFeatured === true)
-          console.log(featuredPhotos)
           featuredPhotos.length > 0
           ? setFeatured(featuredPhotos)
           : setFeatured([])
@@ -31,7 +34,6 @@ function App() {
       })
     }, [image])
 
-    console.log('featured', featured)
   const uploadPhoto = async () => {
     const formData = new FormData()
     formData.append('image',image)
@@ -41,9 +43,8 @@ function App() {
   }
 
   const rootClick =(e) =>{
-    console.log('target', String(e.target.className))
-    if (!(String(e.target.id).includes('login-form')) && displayLogin)  
-      setDisplayLogin(false)
+    if (!(String(e.target.id).includes('login-form')) && loginState)  
+      dispatch(hideLogin())
 }
   
   return (
