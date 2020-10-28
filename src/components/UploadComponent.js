@@ -1,6 +1,8 @@
 import React from 'react'
 import {StyleSheet, css} from 'aphrodite'
 import {useHistory} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import {setActive} from '../reducers/activeTabReducer'
 
 const styles = StyleSheet.create({
     //TODO: fix color
@@ -86,11 +88,12 @@ const UploadComponent = ({description, setUser, resetTab, setDescription, upload
     const history = useHistory()
     const imageInput = React.useRef()
     const checkBoxInput = React.useRef()
+    const dispatch = useDispatch()
 
     const logOut = () => {
         window.localStorage.removeItem('user')
         history.push('/featured')
-        resetTab.current.resetTab()
+        dispatch(setActive('featured'))
         setUser(null)
     }
 

@@ -6,7 +6,7 @@ import {StyleSheet, css} from 'aphrodite'
 import {useDispatch, useSelector} from 'react-redux'
 import {setActive} from '../reducers/activeTabReducer'
 import {displayLogin, hideLogin} from '../reducers/loginReducer'
-const NavBar = React.forwardRef( ({user}, ref) => {
+const NavBar = React.forwardRef( ({user}) => {
     const location = useLocation()
     const state = useSelector(store => store.activeTab)
     const dispatch = useDispatch()
@@ -26,12 +26,6 @@ const NavBar = React.forwardRef( ({user}, ref) => {
     const handleClick = (e) => {
        dispatch(setActive(e.target.id))
     }
-
-    const resetTab = () => {
-        dispatch(setActive('featured'))
-    }
-
-    useImperativeHandle(ref, () => { return {resetTab}})
 
     const styles = StyleSheet.create({
         navStyle: {
