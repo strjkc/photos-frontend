@@ -3,13 +3,12 @@ import {fadeInDownBig, fadeIn} from 'react-animations'
 import {StyleSheet, css} from 'aphrodite'
 import services from '../utils/services'
 import {hideLogin} from '../reducers/loginReducer'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
-const LoginComponent = ({login, setUser}) => {
+const LoginComponent = ({setUser}) => {
     
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
     const state = useSelector(store => store.displayLogin)
+    const dispatch = useDispatch()
     console.log('Login state', state)
     const styles = StyleSheet.create( {  
         loginForm: {
@@ -81,21 +80,23 @@ const LoginComponent = ({login, setUser}) => {
         }
     })
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
-        services.login({username, password})
-            .then(response => {
-                setUser(response)
-                window.localStorage.setItem('user', JSON.stringify(response))
-            })
-            hideLogin()
+        const credentials = {
+            username: e.target.username.value,
+            password: e.target.password.value
+        }
+        const user = await services.login(credentials)
+        setUser(user)
+        window.localStorage.setItem('user', JSON.stringify(user))
+        dispatch(hideLogin())
     }
  
     return (
         <div className={css(styles.modalBackground, styles.modalAnimation)}>
             <form className={css(styles.loginForm, styles.formAnimation)} id='login-form' onSubmit={handleLogin}>
-                <input type='text' placeholder='username' className={css(styles.inputFiled, styles.inputFiledPlaceholder)} id='login-form-username' value={username} onChange={({target}) => setUsername(target.value)}></input>
-                <input type='password' placeholder='password' className={css(styles.inputFiled, styles.inputFiledPlaceholder)} id='login-form-password' value={password} onChange={({target}) => setPassword(target.value)}></input>
+                <input name='username' type='text' placeholder='username' className={css(styles.inputFiled, styles.inputFiledPlaceholder)} id='login-form-username'  ></input>
+                <input name='password' type='password' placeholder='password' className={css(styles.inputFiled, styles.inputFiledPlaceholder)} id='login-form-password' ></input>
                 <div className={css(styles.buttonContainer)}>
                     <button className={css(styles.button, styles.buttonHover)} id='login-form-cancel'>Cancel</button>
                     <button className={css(styles.button, styles.buttonHover)} type='submit' id='login-form-submit'>Log in</button>

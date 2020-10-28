@@ -5,7 +5,7 @@ import NavBar from './NavBar'
 import {StyleSheet, css} from 'aphrodite'
 
 const styles = StyleSheet.create({
-    
+   //TODO 
 })
 
 const HeaderComponent = ({setUser, children, login}) => {

@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-//import './imageComponent.css'
 import {StyleSheet, css} from 'aphrodite'
 
 const styles = StyleSheet.create({
