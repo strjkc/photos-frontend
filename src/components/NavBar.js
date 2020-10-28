@@ -3,14 +3,17 @@ import { HamburgerCollapseReverse } from 'react-animated-burgers'
 import {Link, useLocation} from 'react-router-dom'
 import {fadeIn} from 'react-animations'
 import {StyleSheet, css} from 'aphrodite'
-import {displayLogin, hideLogin} from '../reducers/loginReducer'
 import {useDispatch, useSelector} from 'react-redux'
+import {setActive} from '../reducers/activeTabReducer'
+import {displayLogin, hideLogin} from '../reducers/loginReducer'
 const NavBar = React.forwardRef( ({user}, ref) => {
     const location = useLocation()
+    const state = useSelector(store => store.activeTab)
     const dispatch = useDispatch()
-    const [activeTabId, setActiveTabId] = useState(location.pathname.substring(1))
+//    const [state, setActiveTabId] = useState()
     const [hovered, setHovered] = useState('')
     const [isActive, setIsActive] = useState(false)
+    dispatch(setActive(location.pathname.substring(1)))
     const toggleButton = useCallback(
         () => setIsActive(prevState => !prevState),
         [],
@@ -21,11 +24,11 @@ const NavBar = React.forwardRef( ({user}, ref) => {
     }
 
     const handleClick = (e) => {
-        setActiveTabId(e.target.id)
+       dispatch(setActive(e.target.id))
     }
 
     const resetTab = () => {
-        setActiveTabId('featured')
+        dispatch(setActive('featured'))
     }
 
     useImperativeHandle(ref, () => { return {resetTab}})
@@ -157,11 +160,11 @@ const NavBar = React.forwardRef( ({user}, ref) => {
                 <button role='nav-link' onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.login, styles.navItem)}  onClick={handleLoginClick} id='login' type='button'>
                 Log in
                 </button>
-                <div role='nav-underline' className={activeTabId === 'featured'  ? css(styles.underbarFeat) : hovered === 'featured' ? css(styles.underbarFeat) : css(styles.underbar)}></div>
-                <div role='nav-underline' className={activeTabId === 'overview'  ? css(styles.underbarOv) : hovered === 'overview' ? css(styles.underbarOv) : css(styles.underbar)} id='overviewUnderbar'></div>
-                <div role='nav-underline' className={activeTabId === 'equipment'  ? css(styles.underbarEq) : hovered === 'equipment' ? css(styles.underbarEq) : css(styles.underbar)}></div>
-                <div role='nav-underline' className={activeTabId === 'about'  ? css(styles.underbarAb) : hovered === 'about' ? css(styles.underbarAb) : css(styles.underbar)}></div>
-                <div role='nav-underline' className={activeTabId === 'upload' ? css(styles.underbarUp) : hovered === 'upload' ? css(styles.underbarUp) : hovered === 'login' ? css(styles.underbarUp) : css(styles.underbar)}></div>
+                <div role='nav-underline' className={state === 'featured'  ? css(styles.underbarFeat) : hovered === 'featured' ? css(styles.underbarFeat) : css(styles.underbar)}></div>
+                <div role='nav-underline' className={state === 'overview'  ? css(styles.underbarOv) : hovered === 'overview' ? css(styles.underbarOv) : css(styles.underbar)} id='overviewUnderbar'></div>
+                <div role='nav-underline' className={state === 'equipment'  ? css(styles.underbarEq) : hovered === 'equipment' ? css(styles.underbarEq) : css(styles.underbar)}></div>
+                <div role='nav-underline' className={state === 'about'  ? css(styles.underbarAb) : hovered === 'about' ? css(styles.underbarAb) : css(styles.underbar)}></div>
+                <div role='nav-underline' className={state === 'upload' ? css(styles.underbarUp) : hovered === 'upload' ? css(styles.underbarUp) : hovered === 'login' ? css(styles.underbarUp) : css(styles.underbar)}></div>
             </div>
             <div className={css(styles.hamburgerDisplay)}>
                 <HamburgerCollapseReverse 
@@ -173,23 +176,23 @@ const NavBar = React.forwardRef( ({user}, ref) => {
             <div className={css(styles.hiddenNav)} id='hidden-nav'>
                 <div className={css(styles.hiddenNavItem)}>
                     <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='featured' onClick={handleClick} to='/featured'>Featured</Link>
-                    <div className={activeTabId === 'featured'  ? css(styles.underbarFeat) : hovered === 'featured' ? css(styles.underbarFeat) : css(styles.underbar)}></div>
+                    <div className={state === 'featured'  ? css(styles.underbarFeat) : hovered === 'featured' ? css(styles.underbarFeat) : css(styles.underbar)}></div>
                 </div>
                 <div className={css(styles.hiddenNavItem)}>
                     <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='overview' onClick={handleClick} to='/overview'>Overview</Link>
-                    <div className={activeTabId === 'overview'  ? css(styles.underbarOv) : hovered === 'overview' ? css(styles.underbarOv) : css(styles.underbar)}></div>
+                    <div className={state === 'overview'  ? css(styles.underbarOv) : hovered === 'overview' ? css(styles.underbarOv) : css(styles.underbar)}></div>
                 </div>
                 <div className={css(styles.hiddenNavItem)}>
                     <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='equipment' onClick={handleClick} to='/equipment'>Equipment</Link>
-                    <div className={activeTabId === 'equipment'  ? css(styles.underbarEq) : hovered === 'equipment' ? css(styles.underbarEq) : css(styles.underbar)}></div>
+                    <div className={state === 'equipment'  ? css(styles.underbarEq) : hovered === 'equipment' ? css(styles.underbarEq) : css(styles.underbar)}></div>
                 </div>
                 <div className={css(styles.hiddenNavItem)}>
                     <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id='about' onClick={handleClick} to='/about'>About me</Link>
-                    <div className={activeTabId === 'about'  ? css(styles.underbarAb) : hovered === 'about' ? css(styles.underbarAb) : css(styles.underbar)}></div>
+                    <div className={state === 'about'  ? css(styles.underbarAb) : hovered === 'about' ? css(styles.underbarAb) : css(styles.underbar)}></div>
                 </div>
                 <div className={css(styles.hiddenNavItem)}>
                     <Link onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.displayUpload, styles.displayUploadAnim, styles.navItem)} id='upload' onClick={handleClick} to='/upload' >Upload</Link>
-                    <div className={activeTabId === 'upload' ? css(styles.underbarUp) : hovered === 'upload' ? css(styles.underbarUp) : hovered === 'login' ? css(styles.underbarUp) : css(styles.underbar)}></div>            
+                    <div className={state === 'upload' ? css(styles.underbarUp) : hovered === 'upload' ? css(styles.underbarUp) : hovered === 'login' ? css(styles.underbarUp) : css(styles.underbar)}></div>            
                 </div>
                 <button onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.login, styles.navItem)}  onClick={handleLoginClick} id='login' type='button'>
                 Log in

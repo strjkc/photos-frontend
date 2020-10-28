@@ -7,9 +7,13 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import './reset.css'
 import loginReducer from './reducers/loginReducer'
+import activeTabReducer from './reducers/activeTabReducer'
 
 const reducer = combineReducers(
-  {displayLogin: loginReducer}
+  {
+  displayLogin: loginReducer,
+  activeTab: activeTabReducer
+}
 )
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
