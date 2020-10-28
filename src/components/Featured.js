@@ -3,6 +3,7 @@ import './featured.css'
 import {StyleSheet, css} from 'aphrodite'
 
 const styles = StyleSheet.create({
+    //TODO: finish style to match with css module
     container: {
         margin: '50px 0'
 

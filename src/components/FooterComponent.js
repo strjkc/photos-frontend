@@ -1,6 +1,5 @@
 import React from 'react'
 import {StyleSheet, css} from 'aphrodite'
-import './footerComponent.css'
 import githubImage from '../images/GitHub-Mark-Light-32px.png'
 const FooterComponent = () => {
 
