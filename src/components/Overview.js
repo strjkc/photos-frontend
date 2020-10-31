@@ -2,17 +2,14 @@ import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector} from 'react-redux'
 import ImageComponent from './ImageComponent'
 import EditComponent from './EditComponent'
-import services from '../utils/services'
 import {StyleSheet, css} from 'aphrodite'
 
 const Overview = ({setDisplayFullImage}) => {
     const photos = useSelector(store => store.photos)
-    const user = useSelector(store => store.user)
-    const dispatch = useDispatch()
-
+    
     const styles = StyleSheet.create(
         {
             noPictures: {

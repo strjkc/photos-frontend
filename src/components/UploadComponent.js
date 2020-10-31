@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, css} from 'aphrodite'
 import {useHistory} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {setActive} from '../reducers/activeTabReducer'
 import {removeUser} from '../reducers/userRedurcer'
 
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     }
 })
 
-const UploadComponent = ({description, setUser, resetTab, setDescription, uploadPhoto, setImage, image, isFeatured, setIsFeatured}) => {
+const UploadComponent = ({description, setDescription, uploadPhoto, setImage, isFeatured, setIsFeatured}) => {
     const history = useHistory()
     const imageInput = React.useRef()
     const checkBoxInput = React.useRef()
