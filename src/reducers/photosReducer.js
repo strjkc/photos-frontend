@@ -4,6 +4,8 @@ const photosReducer = (state = [], action) => {
     switch(action.type){
         case 'ADD':
             return action.data
+        case 'UPDATE_ALL':
+            return state.filter(photo => photo.id !== action.data)
         default: 
             return state
     }
@@ -17,6 +19,18 @@ export const fetchPhotos = () => {
         data: photos
     })
 }
+}
+
+export const updatePhotosArray = id => {
+    return async dispatch => {
+        await photoServices.deletePhoto(id)
+        dispatch(
+            {
+                type: 'UPDATE_ALL',
+                data: id
+            }
+        )
+    }
 }
 
 export default photosReducer
