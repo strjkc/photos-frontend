@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {fadeInDownBig, fadeIn} from 'react-animations'
 import {StyleSheet, css} from 'aphrodite'
 import services from '../utils/services'
 import {hideLogin} from '../reducers/loginReducer'
-import {setUser, removeUser} from '../reducers/userRedurcer'
+import {setUser} from '../reducers/userRedurcer'
 import {useDispatch, useSelector} from 'react-redux'
 
 const LoginComponent = () => {

@@ -1,14 +1,12 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './headerComponent.css'
-import './NavBar'
-import NavBar from './NavBar'
 import {StyleSheet, css} from 'aphrodite'
 
 const styles = StyleSheet.create({
    //TODO 
 })
 
-const HeaderComponent = ({setUser, children, login}) => {
+const HeaderComponent = ({children}) => {
 
   
     return(

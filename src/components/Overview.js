@@ -7,7 +7,6 @@ import ImageComponent from './ImageComponent'
 import EditComponent from './EditComponent'
 import services from '../utils/services'
 import {StyleSheet, css} from 'aphrodite'
-import {updatePhotosArray} from '../reducers/photosReducer'
 
 const Overview = ({setDisplayFullImage}) => {
     const photos = useSelector(store => store.photos)
@@ -15,10 +14,7 @@ const Overview = ({setDisplayFullImage}) => {
     const dispatch = useDispatch()
 
 
-    const removePhoto = (photoToRemove) => {
-        dispatch(updatePhotosArray(photoToRemove.id))
-        toggleFeatured(photoToRemove)
-    }
+
 
     const toggleFeatured = (photoToRemove) => {
         services.updatePhoto(photoToRemove)
@@ -46,7 +42,7 @@ const Overview = ({setDisplayFullImage}) => {
                             {photos.map(photo => 
                             <Col key={photo.id} className='column' lg={4}>
                                 <ImageComponent photo={photo} setDisplayFullImage={setDisplayFullImage}>
-                                    <EditComponent toggleFeatured={toggleFeatured} removePhoto={removePhoto} user={user} photo={photo}/>
+                                    <EditComponent toggleFeatured={toggleFeatured} user={user} photo={photo}/>
                                 </ImageComponent>
                             </Col>)}
                         </Row>
