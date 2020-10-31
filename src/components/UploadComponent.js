@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useRef, useState} from 'react'
 import {StyleSheet, css} from 'aphrodite'
 import {useHistory} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {setActive} from '../reducers/activeTabReducer'
 import {removeUser} from '../reducers/userRedurcer'
+import services from '../utils/services'
+import {fetchPhotos} from '../reducers/photosReducer'
 
 const styles = StyleSheet.create({
     //TODO: fix color
@@ -85,11 +87,15 @@ const styles = StyleSheet.create({
     }
 })
 
-const UploadComponent = ({description, setDescription, uploadPhoto, setImage, isFeatured, setIsFeatured}) => {
+const UploadComponent = () => {
     const history = useHistory()
-    const imageInput = React.useRef()
-    const checkBoxInput = React.useRef()
+    const imageRef = useRef()
+    const checkBoxRef = useRef()
+    const [image, setImage] = useState(null)
+    const [isFeatured, setIsFeatured] = useState(false)
+    const [description, setDescritpion] = useState('')
     const dispatch = useDispatch()
+
 
     const logOut = () => {
         window.localStorage.removeItem('user')
@@ -97,28 +103,39 @@ const UploadComponent = ({description, setDescription, uploadPhoto, setImage, is
         dispatch(setActive('featured'))
         dispatch(removeUser)
     }
+    const upload = async () => {
+        const formData = new FormData()
+        formData.append('image', image)
+        formData.append('description', description)
+        formData.append('isFeatured', isFeatured)
+        console.log(formData.entries())
+        await services.postPhoto(formData)
+        dispatch(fetchPhotos())
+    }
+    const resetValues = () => {
+        setIsFeatured(false)
+        setImage(null) 
+        imageRef.current.value = null
+        checkBoxRef.current.checked = false
+        setDescritpion('')
+    }
 
     const dumb = async (e) => {
         e.preventDefault()
-        console.log('target now',e.target.input)
-        await uploadPhoto()
-        imageInput.current.value = ''
-        checkBoxInput.current.checked = false
-        setIsFeatured(false)
-        setImage(null) 
-        setDescription('') 
-    }
+        await upload()
+        resetValues()
+}
 
     return(
     <div className={css(styles.wrapper)}>
         <h3 className={css(styles.title)}>Upload Photo</h3>
         <form onSubmit={dumb} className={css(styles.formStyle)}>
-          <input ref={imageInput}type='file' className={css(styles.formChildren)} onChange={({target}) => setImage(target.files[0])}></input>
+          <input ref={imageRef} type='file' className={css(styles.formChildren)} onChange={(e) => setImage(e.target.files[0])} ></input>
           <div className={css(styles.descriptionWrapper)}>
-            <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder='Describe the photo' value={description} onChange={({target}) => setDescription(target.value)}></textarea>
+            <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder='Describe the photo' value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
               <div className={css(styles.formChildren, styles.checkBox)}>
-                <label for='upload-checkbox' className={css(styles.checkBox)} >Is featured</label>
-            <input ref={checkBoxInput} type='checkbox' id='upload-checkbox' onChange={(e) => setIsFeatured(!isFeatured)}></input>
+                <label htmlFor='upload-checkbox' className={css(styles.checkBox)} >Is featured</label>
+            <input ref={checkBoxRef} type='checkbox' id='upload-checkbox' value={isFeatured} onChange={() => setIsFeatured(!isFeatured)} ></input>
               </div>
           </div>
             <button type='submit' className={css(styles.button, styles.buttonHover, styles.formChildren)}>Upload</button>

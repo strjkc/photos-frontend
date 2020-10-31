@@ -1,6 +1,7 @@
 import React from 'react'
 import './featured.css'
 import {StyleSheet, css} from 'aphrodite'
+import { useSelector } from 'react-redux'
 
 const styles = StyleSheet.create({
     //TODO: finish style to match with css module
@@ -15,7 +16,8 @@ const styles = StyleSheet.create({
     }
 }) 
 
-const Featured = ({featured}) => {
+const Featured = () => {
+    const featured = useSelector(store => store.photos.filter( photo => photo.isFeatured))
 
     const elements = featured.length > 0 
     ? featured.map(photo =>
