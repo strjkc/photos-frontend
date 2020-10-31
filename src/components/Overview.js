@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import ImageComponent from './ImageComponent'
 import EditComponent from './EditComponent'
 import services from '../utils/services'
+import {StyleSheet, css} from 'aphrodite'
 
 
 const Overview = ({setDisplayFullImage}) => {
@@ -25,6 +26,17 @@ const Overview = ({setDisplayFullImage}) => {
         photos[photos.indexOf(changed)].isFeatured = !changed.isFeatured
        // setFeatured(photos.filter(photo => photo.isFeatured === true))
     }
+
+
+    const styles = StyleSheet.create(
+        {
+            noPictures: {
+                color: '#E5E5E5',
+                padding: '20px 0'
+            },
+        }
+    )
+
     return (
         <div>
             {
