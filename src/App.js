@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {useDispatch, useSelector} from 'react-redux'
 import MainPage from './components/MainPage'
 import services from './utils/services'
-import {hideLogin} from './reducers/loginReducer'
+import {fetchPhotos} from './reducers/photosReducer'
+
+import {useDispatch} from 'react-redux'
 
 function App() {
-  const dispatch = useDispatch()
-  const loginState = useSelector(store => store.displayLogin)
   const [image, setImage] = useState(null)
   const [featured, setFeatured] = useState([])
   const [user, setUser] = useState(null)
@@ -14,7 +13,8 @@ function App() {
   const [photos, setPhotos] = useState([])
   const [displayLogin, setDisplayLogin] = useState(false)
   const [isFeatured, setIsFeatured] = useState(false)
-
+  const dispatch = useDispatch()
+//TODO: fetch only latest photo after upload
   useEffect(() => {
     const userAsString = window.localStorage.getItem('user')
     if (userAsString)
@@ -22,16 +22,7 @@ function App() {
   }, [])
 
   useEffect( () => {
-    services.getPhotos()
-      .then(response => {
-        setPhotos(response)
-        if (response.length > 0) {
-          const featuredPhotos = response.filter(photo => photo.isFeatured === true)
-          featuredPhotos.length > 0
-          ? setFeatured(featuredPhotos)
-          : setFeatured([])
-        }
-      })
+    dispatch(fetchPhotos())
     }, [image])
 
   const uploadPhoto = async () => {
@@ -43,8 +34,9 @@ function App() {
   }
 
   const rootClick =(e) =>{
-    if (!(String(e.target.id).includes('login-form')) && loginState)  
-      dispatch(hideLogin())
+    console.log('target', String(e.target.className))
+    if (!(String(e.target.id).includes('login-form')) && displayLogin)  
+      setDisplayLogin(false)
 }
   
   return (

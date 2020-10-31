@@ -19,11 +19,14 @@ import Equipment from './Equipment'
 import EditComponent from './EditComponent'
 import services from '../utils/services'
 import FullImage from './FullImage'
+import { useSelector } from 'react-redux'
 
-const MainPage = ({photos, setPhotos, uploadPhoto, setFeatured, setDescription, description, setImage, image, isFeatured, setIsFeatured, featured, user, setUser, login}) => {
+const MainPage = ({setPhotos, uploadPhoto, setFeatured, setDescription, description, setImage, image, isFeatured, setIsFeatured, user, setUser, login}) => {
     const activeTabRef = useRef()
     const [displayFullImage, setDisplayFullImage] = useState(null) 
-
+    const photos = useSelector(store => store.photos)
+    const featured = photos.filter( photo => photo.isFeatured)
+    
     const toggleFeatured = (photoToRemove) => {
         services.updatePhoto(photoToRemove)
         const changed = photos.find(photo => photo.id === photoToRemove.id)

@@ -9,12 +9,14 @@ import './reset.css'
 import loginReducer from './reducers/loginReducer'
 import activeTabReducer from './reducers/activeTabReducer'
 import userReducer from './reducers/userRedurcer'
+import photosReducer from './reducers/photosReducer'
 
 const reducer = combineReducers(
   {
   displayLogin: loginReducer,
   activeTab: activeTabReducer,
-  user: userReducer
+  user: userReducer,
+  photos: photosReducer,
 }
 )
 
