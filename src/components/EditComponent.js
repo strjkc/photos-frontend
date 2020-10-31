@@ -2,13 +2,14 @@ import React from 'react'
 import {StyleSheet, css} from 'aphrodite'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTrashAlt, faStar} from '@fortawesome/free-solid-svg-icons'
+import {useSelector} from 'react-redux'
 
-const EditComponent = ({user, photo, toggleFeatured, removePhoto}) => {
-    
+const EditComponent = ({photo, toggleFeatured, removePhoto}) => {
+    const state = useSelector(store => store.user )
     //TODO set new featured list by filtering out the old id
     const styles = StyleSheet.create({
         container: {
-            display: user ? 'flex' : 'none',
+            display: state ? 'flex' : 'none',
             justifyContent: 'flex-end',
             position: 'absolute',
             zIndex: '2',

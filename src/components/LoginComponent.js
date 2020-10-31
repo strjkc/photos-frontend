@@ -3,9 +3,10 @@ import {fadeInDownBig, fadeIn} from 'react-animations'
 import {StyleSheet, css} from 'aphrodite'
 import services from '../utils/services'
 import {hideLogin} from '../reducers/loginReducer'
+import {setUser, removeUser} from '../reducers/userRedurcer'
 import {useDispatch, useSelector} from 'react-redux'
 
-const LoginComponent = ({setUser}) => {
+const LoginComponent = () => {
     
     const state = useSelector(store => store.displayLogin)
     const dispatch = useDispatch()
@@ -82,12 +83,8 @@ const LoginComponent = ({setUser}) => {
 
     const handleLogin = async (e) => {
         e.preventDefault()
-        const credentials = {
-            username: e.target.username.value,
-            password: e.target.password.value
-        }
-        const user = await services.login(credentials)
-        setUser(user)
+        const user = await services.login( {username: e.target.username.value, password: e.target.password.value })
+        dispatch(setUser(user))
         window.localStorage.setItem('user', JSON.stringify(user))
         dispatch(hideLogin())
     }

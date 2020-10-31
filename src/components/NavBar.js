@@ -6,9 +6,10 @@ import {StyleSheet, css} from 'aphrodite'
 import {useDispatch, useSelector} from 'react-redux'
 import {setActive} from '../reducers/activeTabReducer'
 import {displayLogin, hideLogin} from '../reducers/loginReducer'
-const NavBar = React.forwardRef( ({user}) => {
+const NavBar = () => {
     const location = useLocation()
     const state = useSelector(store => store.activeTab)
+    const userState = useSelector(store => store.user)
     const dispatch = useDispatch()
 //    const [state, setActiveTabId] = useState()
     const [hovered, setHovered] = useState('')
@@ -92,7 +93,7 @@ const NavBar = React.forwardRef( ({user}) => {
             background: 'rgba(150, 250, 250, 0.5)',
           },
         displayUpload: {
-            display: user !== null ? '' : 'none'
+            display: userState ? '' : 'none'
         },
         displayUploadAnim: {
             animationName: fadeIn,
@@ -104,7 +105,7 @@ const NavBar = React.forwardRef( ({user}) => {
             }
         },
         login:{
-            display: user ? 'none' : '',
+            display: userState ? 'none' : '',
             backgroundColor: 'inherit',
             border: 'none',
             outline: 'none' 
@@ -194,6 +195,6 @@ const NavBar = React.forwardRef( ({user}) => {
             </div>
         </>
     )
-})
+}
 
 export default NavBar

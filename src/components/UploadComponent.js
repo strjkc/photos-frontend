@@ -1,8 +1,9 @@
 import React from 'react'
 import {StyleSheet, css} from 'aphrodite'
 import {useHistory} from 'react-router-dom'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {setActive} from '../reducers/activeTabReducer'
+import {removeUser} from '../reducers/userRedurcer'
 
 const styles = StyleSheet.create({
     //TODO: fix color
@@ -94,11 +95,8 @@ const UploadComponent = ({description, setUser, resetTab, setDescription, upload
         window.localStorage.removeItem('user')
         history.push('/featured')
         dispatch(setActive('featured'))
-        setUser(null)
+        dispatch(removeUser)
     }
-
-    console.log('isFeatured',isFeatured)
-    console.log('image', image)
 
     const dumb = async (e) => {
         e.preventDefault()

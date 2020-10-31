@@ -8,11 +8,13 @@ import thunk from 'redux-thunk'
 import './reset.css'
 import loginReducer from './reducers/loginReducer'
 import activeTabReducer from './reducers/activeTabReducer'
+import userReducer from './reducers/userRedurcer'
 
 const reducer = combineReducers(
   {
   displayLogin: loginReducer,
-  activeTab: activeTabReducer
+  activeTab: activeTabReducer,
+  user: userReducer
 }
 )
 
