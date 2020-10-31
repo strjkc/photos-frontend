@@ -6,6 +6,8 @@ const photosReducer = (state = [], action) => {
             return action.data
         case 'UPDATE_ALL':
             return state.filter(photo => photo.id !== action.data)
+        case 'TOGGLE_FEATURED':
+            return state.map(photo => photo.id === action.data.id ? action.data : photo)
         default: 
             return state
     }
@@ -23,13 +25,24 @@ export const fetchPhotos = () => {
 
 export const updatePhotosArray = id => {
     return async dispatch => {
-        await photoServices.deletePhoto(id)
+        photoServices.deletePhoto(id)
         dispatch(
             {
                 type: 'UPDATE_ALL',
                 data: id
             }
         )
+    }
+}
+
+export const updateIsPhotoFeatured = photo => {
+    return async dispatch => {
+        photoServices.updatePhoto(photo)
+        const newPhoto = {...photo, isFeatured: !photo.isFeatured}
+        dispatch({
+            type: 'TOGGLE_FEATURED',
+            data: newPhoto
+        })
     }
 }
 
