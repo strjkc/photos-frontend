@@ -2,23 +2,25 @@ import React, { useState, useEffect } from 'react';
 import MainPage from './components/MainPage'
 import services from './utils/services'
 import {fetchPhotos} from './reducers/photosReducer'
+import {setUser} from './reducers/userRedurcer'
 
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 function App() {
   const [image, setImage] = useState(null)
   const [featured, setFeatured] = useState([])
-  const [user, setUser] = useState(null)
+  //const [user, setUser] = useState(null)
   const [description, setDescription] = useState('')
   const [photos, setPhotos] = useState([])
   const [displayLogin, setDisplayLogin] = useState(false)
   const [isFeatured, setIsFeatured] = useState(false)
   const dispatch = useDispatch()
 //TODO: fetch only latest photo after upload
+const user = useSelector(store => store.user)
   useEffect(() => {
     const userAsString = window.localStorage.getItem('user')
     if (userAsString)
-      setUser(JSON.parse(userAsString))
+      dispatch(setUser(JSON.parse(userAsString)))
   }, [])
 
   useEffect( () => {
@@ -47,7 +49,7 @@ function App() {
     width: '100vw',
     
     }} onClick={rootClick}>
-      <MainPage isFeatured={isFeatured} image={image} uploadPhoto={uploadPhoto} setPhotos={setPhotos} setImage={setImage} description={description} setDescription={setDescription} setFeatured={setFeatured} setIsFeatured={setIsFeatured} setUser={setUser} user={user} photos={photos} featured={featured} login={{displayLogin, setDisplayLogin}}/>
+      <MainPage isFeatured={isFeatured} image={image} uploadPhoto={uploadPhoto} setPhotos={setPhotos} setImage={setImage} description={description} setDescription={setDescription} setFeatured={setFeatured} setIsFeatured={setIsFeatured}  photos={photos} featured={featured} login={{displayLogin, setDisplayLogin}}/>
     </div>
   );
 }
