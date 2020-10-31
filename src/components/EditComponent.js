@@ -3,20 +3,23 @@ import {StyleSheet, css} from 'aphrodite'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTrashAlt, faStar} from '@fortawesome/free-solid-svg-icons'
 import {useSelector, useDispatch} from 'react-redux'
-import {updatePhotosArray} from '../reducers/photosReducer'
+import {updatePhotosArray, updateIsPhotoFeatured} from '../reducers/photosReducer'
 
-
-const EditComponent = ({photo, toggleFeatured}) => {
-    const state = useSelector(store => store.user )
+const EditComponent = ({photo}) => {
+    const user = useSelector(store => store.user )
     const dispatch = useDispatch()
 
     const removePhoto = (photoToRemove) => {
         dispatch(updatePhotosArray(photoToRemove.id))
-        toggleFeatured(photoToRemove)
     }
+
+    const toggleFeatured = (photoToRemove) => {
+        dispatch(updateIsPhotoFeatured(photoToRemove))
+    }
+
     const styles = StyleSheet.create({
         container: {
-            display: state ? 'flex' : 'none',
+            display: user ? 'flex' : 'none',
             justifyContent: 'flex-end',
             position: 'absolute',
             zIndex: '2',

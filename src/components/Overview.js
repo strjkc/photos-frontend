@@ -7,26 +7,11 @@ import ImageComponent from './ImageComponent'
 import EditComponent from './EditComponent'
 import services from '../utils/services'
 import {StyleSheet, css} from 'aphrodite'
-import {updateIsPhotoFeatured} from '../reducers/photosReducer'
 
 const Overview = ({setDisplayFullImage}) => {
     const photos = useSelector(store => store.photos)
     const user = useSelector(store => store.user)
     const dispatch = useDispatch()
-
-
-
-
-    const toggleFeatured = (photoToRemove) => {
-        dispatch(updateIsPhotoFeatured(photoToRemove))
-        /*services.updatePhoto(photoToRemove)
-        dispatch()
-        const changed = photos.find(photo => photo.id === photoToRemove.id)
-        photos[photos.indexOf(changed)].isFeatured = !changed.isFeatured
-       // setFeatured(photos.filter(photo => photo.isFeatured === true))
-        */
-    }
-
 
     const styles = StyleSheet.create(
         {
@@ -46,7 +31,7 @@ const Overview = ({setDisplayFullImage}) => {
                             {photos.map(photo => 
                             <Col key={photo.id} className='column' lg={4}>
                                 <ImageComponent photo={photo} setDisplayFullImage={setDisplayFullImage}>
-                                    <EditComponent toggleFeatured={toggleFeatured} user={user} photo={photo}/>
+                                    <EditComponent photo={photo}/>
                                 </ImageComponent>
                             </Col>)}
                         </Row>
