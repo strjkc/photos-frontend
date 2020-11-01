@@ -7,7 +7,7 @@ import {
   Switch, Route, Redirect
 } from "react-router-dom"
 import {StyleSheet, css} from 'aphrodite'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import NavBar from './components/NavBar'
 import HeaderComponent from './components/HeaderComponent'
 import FooterComponent from './components/FooterComponent'
@@ -22,8 +22,7 @@ import Overview from './components/Overview'
 function App() {
   const [displayLogin, setDisplayLogin] = useState(false)
   const dispatch = useDispatch()
-  const [displayFullImage, setDisplayFullImage] = useState(null) 
-
+  const fullScreenImage = useSelector(store => store.fullImage)
   const styles = StyleSheet.create(
       {
         rootContainer: {
@@ -72,14 +71,14 @@ function App() {
             <HeaderComponent>
                 <NavBar/>
             </HeaderComponent>
-            {displayFullImage ? <FullImage setDisplayFullImage={setDisplayFullImage} displayFullImage={displayFullImage}/> : <></>}
+            {fullScreenImage ? <FullImage/> : <></>}
                 <Switch>
                 <Redirect exact from='/' to='/featured' />
                     <Route path='/featured'>
                         <Featured/>
                     </Route>
                     <Route path='/overview'>
-                        <Overview setDisplayFullImage={setDisplayFullImage}/>
+                        <Overview/>
                     </Route>
                     <Route path='/about'>
                         <About />

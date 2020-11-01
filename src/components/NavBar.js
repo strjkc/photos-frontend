@@ -5,7 +5,7 @@ import {fadeIn} from 'react-animations'
 import {StyleSheet, css} from 'aphrodite'
 import {useDispatch, useSelector} from 'react-redux'
 import {setActive} from '../reducers/activeTabReducer'
-import {displayLogin, hideLogin} from '../reducers/loginReducer'
+import {displayLogin} from '../reducers/loginReducer'
 const NavBar = () => {
     const location = useLocation()
     const state = useSelector(store => store.activeTab)

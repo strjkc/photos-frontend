@@ -3,6 +3,8 @@ import {StyleSheet, css} from 'aphrodite'
 import {faArrowAltCircleDown} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import services from '../utils/services'
+import { useSelector, useDispatch } from 'react-redux'
+import {removePhoto} from '../reducers/fullImageReducer'
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -33,21 +35,24 @@ const styles = StyleSheet.create({
     }
 })
 
-const FullImage = ({displayFullImage, setDisplayFullImage}) => {
+const FullImage = () => {
+    const image = useSelector(store => store.fullImage)
+    const dispatch = useDispatch()
+
     const handleDismiss = (e) => {
         console.log('fulliamgetarget', e.target.className)
         if (typeof e.target.className === 'string')
             if (e.target.className.includes('modalContainer'))
-                setDisplayFullImage(null)
+                dispatch(removePhoto())
     }
     const handleDownload = () => {
-        services.download(displayFullImage.id, displayFullImage.name)
+        services.download(image.id, image.name)
     }
     return(
         <div onClick={handleDismiss} className={css(styles.modalContainer)}>
             <div className={css(styles.wrapper)}>
                 <FontAwesomeIcon onClick={handleDownload} icon={faArrowAltCircleDown} className={css(styles.download)}><div className='thisclass'></div></FontAwesomeIcon>
-                <img className={css(styles.image)} src={displayFullImage.name} alt='fullscreenImage'></img>
+                <img className={css(styles.image)} src={image.name} alt='fullscreenImage'></img>
             </div>
         </div>
     )

@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import {StyleSheet, css} from 'aphrodite'
+import {setPhoto} from '../reducers/fullImageReducer'
+import {useDispatch} from 'react-redux'
 
 const styles = StyleSheet.create({
     imageContainer: {
@@ -47,11 +49,11 @@ const styles = StyleSheet.create({
 })
 
 const ImageComponent = ({photo, children, setDisplayFullImage}) => {
-
     const [containerHovered, setContainerHovered] = useState(false)
+    const dispatch = useDispatch()
 
     const handleImageClick = () => {
-        setDisplayFullImage(photo)    
+        dispatch(setPhoto(photo))    
     }
     return(
         <div onMouseOver={() => setContainerHovered(true)} onMouseLeave={() => setContainerHovered(false)} className={css(styles.imageContainer)}>

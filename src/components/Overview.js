@@ -27,7 +27,7 @@ const Overview = ({setDisplayFullImage}) => {
                         <Row lg={3} className='h-100'> 
                             {photos.map(photo => 
                             <Col key={photo.id} className='column' lg={4}>
-                                <ImageComponent photo={photo} setDisplayFullImage={setDisplayFullImage}>
+                                <ImageComponent photo={photo}>
                                     <EditComponent photo={photo}/>
                                 </ImageComponent>
                             </Col>)}

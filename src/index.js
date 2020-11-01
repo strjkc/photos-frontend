@@ -10,6 +10,7 @@ import loginReducer from './reducers/loginReducer'
 import activeTabReducer from './reducers/activeTabReducer'
 import userReducer from './reducers/userRedurcer'
 import photosReducer from './reducers/photosReducer'
+import fullImageReducer from './reducers/fullImageReducer'
 
 const reducer = combineReducers(
   {
@@ -17,6 +18,7 @@ const reducer = combineReducers(
   activeTab: activeTabReducer,
   user: userReducer,
   photos: photosReducer,
+  fullImage: fullImageReducer
 }
 )
 
