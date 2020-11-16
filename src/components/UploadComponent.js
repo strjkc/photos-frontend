@@ -101,7 +101,7 @@ const UploadComponent = () => {
         window.localStorage.removeItem('user')
         history.push('/featured')
         dispatch(setActive('featured'))
-        dispatch(removeUser)
+        dispatch(removeUser())
     }
     const upload = async () => {
         const formData = new FormData()

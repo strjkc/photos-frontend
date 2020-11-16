@@ -8,21 +8,23 @@ import {
 } from "react-router-dom"
 import {StyleSheet, css} from 'aphrodite'
 import {useDispatch, useSelector} from 'react-redux'
-import NavBar from './components/NavBar'
+import Nav from './components/Nav/Nav'
 import HeaderComponent from './components/HeaderComponent'
 import FooterComponent from './components/FooterComponent'
 import Featured from './components/Featured'
 import UploadComponent from './components/UploadComponent'
 import LoginComponent from './components/LoginComponent'
-import About from './components/About'
-import Equipment from './components/Equipment'
+import About from './components/About/About'
+import Equipment from './components/Equipment/Equipment'
 import FullImage from './components/FullImage'
 import Overview from './components/Overview'
+import {hideLogin} from './reducers/loginReducer'
+
 
 function App() {
-  const [displayLogin, setDisplayLogin] = useState(false)
   const dispatch = useDispatch()
   const fullScreenImage = useSelector(store => store.fullImage)
+  const displayedLogin = useSelector(store => store.displayedLogin)
   const styles = StyleSheet.create(
       {
         rootContainer: {
@@ -59,8 +61,9 @@ function App() {
 
   const rootClick =(e) =>{
     console.log('target', String(e.target.className))
-    if (!(String(e.target.id).includes('login-form')) && displayLogin)  
-      setDisplayLogin(false)
+    if (!(String(e.target.id).includes('login-form')) && displayedLogin)  
+      dispatch(hideLogin())
+    
 }
   
   return (
@@ -69,7 +72,7 @@ function App() {
             <LoginComponent/>
             <Router>
             <HeaderComponent>
-                <NavBar/>
+                <Nav/>
             </HeaderComponent>
             {fullScreenImage ? <FullImage/> : <></>}
                 <Switch>

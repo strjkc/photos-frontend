@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { useSelector} from 'react-redux'
 import ImageComponent from './ImageComponent'
-import EditComponent from './EditComponent'
+import EditComponent from './Edit/EditComponent'
 import {StyleSheet, css} from 'aphrodite'
 
 const Overview = ({setDisplayFullImage}) => {

@@ -10,6 +10,8 @@ const activeTabReducer = (state = '', action) => {
             return 'about'
         case 'LOGIN':
             return 'login'
+        case 'UPLOAD':
+            return 'upload'
         default:
             return state
     }

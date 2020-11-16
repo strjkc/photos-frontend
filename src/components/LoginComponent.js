@@ -95,7 +95,7 @@ const LoginComponent = () => {
                 <input name='username' type='text' placeholder='username' className={css(styles.inputFiled, styles.inputFiledPlaceholder)} id='login-form-username'  ></input>
                 <input name='password' type='password' placeholder='password' className={css(styles.inputFiled, styles.inputFiledPlaceholder)} id='login-form-password' ></input>
                 <div className={css(styles.buttonContainer)}>
-                    <button className={css(styles.button, styles.buttonHover)} id='login-form-cancel'>Cancel</button>
+                    <button className={css(styles.button, styles.buttonHover)} onClick={ () => dispatch(hideLogin())} id='login-form-cancel'>Cancel</button>
                     <button className={css(styles.button, styles.buttonHover)} type='submit' id='login-form-submit'>Log in</button>
                 </div>
             </form>

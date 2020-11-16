@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     }
 })
 
-const ImageComponent = ({photo, children, setDisplayFullImage}) => {
+const ImageComponent = ({photo, children}) => {
     const [containerHovered, setContainerHovered] = useState(false)
     const dispatch = useDispatch()
 
