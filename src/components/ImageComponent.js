@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        maxHeight: '100%',
+        height: '100%',
         display: 'block',
         transition: '400ms'
     },

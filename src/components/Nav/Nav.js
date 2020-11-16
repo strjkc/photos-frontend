@@ -19,7 +19,8 @@ const Nav = () => {
             borderRadius: '5px',
             '@media only screen and (max-width: 800px)': {
                 display: 'none'
-            },'@media only screen and (min-width: 992px)': {
+            },
+            '@media only screen and (min-width: 992px)': {
                 fontSize: '19px'
             }
         },
@@ -31,42 +32,7 @@ const Nav = () => {
             justifySelf: 'center',
             alignSelf: 'center',
             textAlign: 'center',
-        },
-          underbarFeat: {            
-            width: '95%',
-            justifySelf: 'center',
-            height: '5px',
-            transition: '0.5s ease',
-            background: '#6464c8',
-          
-          },
-          underbarOv: {            
-            width: '95%',
-            justifySelf: 'center',
-            height: '5px',
-            transition: '0.5s ease',
-            background: '#c86464',
-          },
-          underbarEq: {            
-            width: '95%',
-            justifySelf: 'center',
-            height: '5px',
-            transition: '0.5s ease',
-            background: 'rgba(150, 250, 250, 0.5)',
-          },
-          underbarAb: {            
-            width: '95%',
-            justifySelf: 'center',
-            height: '5px',
-            transition: '0.5s ease',
-            background: 'rgba(150, 250, 250, 0.5)',
-          },
-          underbarUp: {            
-            width: '95%',
-            height: '5px',
-            transition: '0.5s ease',
-            background: 'rgba(150, 250, 250, 0.5)',
-          }
+        }
     })
 
 

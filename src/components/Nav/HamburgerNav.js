@@ -22,19 +22,15 @@ const HamburgerNav = () => {
         backgroundColor: 'rgb(31, 32, 29)',
         right: '25px',
         padding: '10px',
-        borderRadius: '10px'
+        borderRadius: '10px',
+        transition: 'ease',
+        transitionDuration: '2s'
     },hamburgerDisplay: {
         '@media only screen and (min-width: 800px)': {
             display: 'none'
         }
-    },
-    hiddenNavItem: {
-        display: 'grid',
-        width: '100px',
-        height: '30px',
-        margin: '5px',
-        textAlign: 'center'
-}})
+    }
+})
     return(
         <div className={css(styles.hamburgerDisplay)}>
             <HamburgerCollapseReverse 

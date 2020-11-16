@@ -1,11 +1,16 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {setActive} from '../../reducers/activeTabReducer'
 import {Link} from 'react-router-dom'
 import {StyleSheet, css} from 'aphrodite'
 import {displayLogin} from '../../reducers/loginReducer'
 
-const styles = StyleSheet.create({
+
+const NavItem = ({text, button}) => {
+    const [randomNumber, setRandom] = useState(0)
+    const underbarColors = ['#c86464', '#6464c8', '#96FAFA']
+useEffect(() => setRandom(Math.floor(Math.random() * Math.floor(underbarColors.length))))
+    const styles = StyleSheet.create({
     navItem: {
         padding: '3px',
         boxSizing: 'border-box',
@@ -38,7 +43,7 @@ const styles = StyleSheet.create({
         justifySelf: 'center',
         height: '5px',
         transition: '0.5s ease',
-        background: '#6464c8',
+        background: underbarColors[randomNumber]
       
       },
       login:{
@@ -48,8 +53,6 @@ const styles = StyleSheet.create({
     },    
 })
 
-
-const NavItem = ({text, button}) => {
     let displayedText = ''
     if (!button)
         displayedText = text.charAt(0).toUpperCase() +  text.slice(1)

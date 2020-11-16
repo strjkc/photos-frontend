@@ -20,7 +20,7 @@ const Overview = ({setDisplayFullImage}) => {
     )
 
     return (
-        <div>
+        <>
             {
                 photos.length > 0
                 ?   <Container style={{width: '100%', margin: '0', padding: '0'}}>
@@ -35,7 +35,7 @@ const Overview = ({setDisplayFullImage}) => {
                     </Container>
                 : <p className={css(styles.noPictures)}>No pictures to display</p>
             }
-        </div>
+        </>
     )
 }
 

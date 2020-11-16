@@ -1,8 +1,11 @@
 .featured-container{
     width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 .featured-image-container{
     position: relative;
+    
 }
 
 .featured-image-description{
