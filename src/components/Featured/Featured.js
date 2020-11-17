@@ -33,7 +33,7 @@ const Featured = () => {
 
     const elements = featured.length > 0 
     ? featured.map(photo =>
-        <FeaturedItem photo={photo} />
+        <FeaturedItem photo={photo} slideRight={featured.indexOf(photo)%2} />
         ) 
     : <div className={css(styles.noPhotoText)}>No Featured pictures to display</div>
 

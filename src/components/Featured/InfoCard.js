@@ -4,21 +4,26 @@ import {fadeIn, fadeOut} from 'react-animations'
 import {faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const InfoCard = ({description, display, setDisplayDesc}) => {
+const InfoCard = ({description, display, slideRight, setDisplayDesc}) => {
 //TODO: arrow direction, calculated info width based on image width, calculated info push in when hidden
     const style = StyleSheet.create({
         descriptionContainer: {
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
+            justifyContent: 'center',
             width: '35%',
             height: '85%',
             position: 'absolute',
             zIndex: '0',
-            right: '27%',
             transitionDuration: '1s',
             backgroundColor: 'white',
             borderRadius: '10px',
+        },
+        positionRight:{
+            right: '25%',
+
+        },
+        positionLeft: {
+            left: '25%',
         },
         description: {
             display: 'block',
@@ -27,20 +32,23 @@ const InfoCard = ({description, display, setDisplayDesc}) => {
             width: '45%',
         },
         iconWrapper: {
-            position: 'relative',
             width:'30px',
             height: '30px',
-            right: '1px'
         },
         icon: {
             color: 'black',
             height:'100%',
             transition:'width 1s',
             position:'absolute',
-            right:'1px',
             zIndex: '5'},
+        iconLeft:{
+            left: '1px'            
+        },
+        iconRight:{
+            right: '1px'
+        },
         slideOut: {
-            transform: 'translate(50%)',
+            transform: slideRight ? 'translate(-70%)' : 'translate(70%)' ,
             transitionDuration: '1s'
         },
         animateText: {
@@ -50,10 +58,24 @@ const InfoCard = ({description, display, setDisplayDesc}) => {
     })
 
     return(
-        <div className={display ? css(style.descriptionContainer, style.slideOut) : css(style.descriptionContainer) }>
+        <div className={
+            display ? 
+                slideRight ?  
+                    css(style.descriptionContainer, style.positionLeft, style.slideOut)
+                    :css(style.descriptionContainer, style.positionRight, style.slideOut)
+ 
+            : slideRight ?
+                 css(style.descriptionContainer, style.positionLeft)
+                : css(style.descriptionContainer, style.positionRight)
+            }>
             <p className={css(style.description, style.animateText)}>{description}</p>
-            <div className={css(style.iconWrapper)}>
-                <FontAwesomeIcon className={css(style.icon)} icon={faArrowCircleLeft} onClick={() => setDisplayDesc(!display)}></FontAwesomeIcon>            
+            <div className={
+                slideRight 
+                ? css(style.iconWrapper)
+            : css(style.iconWrapper)}>
+                <FontAwesomeIcon className={slideRight 
+                ? css(style.icon, style.iconLeft)
+            : css(style.icon, style.iconRight)} icon={faArrowCircleLeft} onClick={() => setDisplayDesc(!display)}></FontAwesomeIcon>            
             </div>
         </div>
     )
