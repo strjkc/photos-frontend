@@ -11,6 +11,7 @@ const FeaturedImage = ({photo, slideRight}) => {
     const style = StyleSheet.create({
         itemContainer: {
             display: 'flex',
+            marginBottom: '50px',
             justifyContent: slideRight ? 'flex-end' : 'flex-start',
             alignItems: 'center',
             position: 'relative',
