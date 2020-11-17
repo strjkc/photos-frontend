@@ -32,7 +32,10 @@ time, mark, audio, video {
     vertical-align: middle;
 }
 html{
-    overflow-x: hidden;
+	overflow-x: hidden;
+	scroll-snap-type: y proximity;
+	scroll-behavior: smooth;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 

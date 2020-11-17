@@ -29,7 +29,7 @@ useEffect(() => setRandom(Math.floor(Math.random() * Math.floor(underbarColors.l
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
         underbar: {
         width: '0',
