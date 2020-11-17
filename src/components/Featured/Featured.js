@@ -39,8 +39,7 @@ const Featured = () => {
 
     return(
         <div className={css(styles.container)}>
-            
-                    {elements}
+            {elements}
         </div>
     )
 }

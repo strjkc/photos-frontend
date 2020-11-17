@@ -11,36 +11,49 @@ const InfoCard = ({description, display, setDisplayDesc}) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
-            width: '50%',
-            height: '80%',
+            width: '35%',
+            height: '85%',
             position: 'absolute',
             zIndex: '0',
-            right: '370px',
+            right: '27%',
             transitionDuration: '1s',
             backgroundColor: 'white',
             borderRadius: '10px',
         },
         description: {
-            display: display ? 'block' : 'none',
+            display: 'block',
             color: 'black',
             height: '100%',
             width: '45%',
         },
+        iconWrapper: {
+            position: 'relative',
+            width:'30px',
+            height: '30px',
+            right: '1px'
+        },
+        icon: {
+            color: 'black',
+            height:'100%',
+            transition:'width 1s',
+            position:'absolute',
+            right:'1px',
+            zIndex: '5'},
         slideOut: {
-            transform: 'translate(300px)',
+            transform: 'translate(50%)',
             transitionDuration: '1s'
         },
         animateText: {
-            animationName: fadeIn,
+            animationName: display ? fadeIn : fadeOut,
             animationDuration: '1.7s'
         }
     })
-    console.log('d',display)
+
     return(
         <div className={display ? css(style.descriptionContainer, style.slideOut) : css(style.descriptionContainer) }>
             <p className={css(style.description, style.animateText)}>{description}</p>
-            <div style={{position: 'relative', width:'30px', height: '30px', right: '1px'}}>
-                <FontAwesomeIcon icon={faArrowCircleLeft} style={{color: 'black', height:'100%', transition:'width 1s', position:'absolute', right:'1px', zIndex: '5'}} onClick={() => setDisplayDesc(!display)}></FontAwesomeIcon>            
+            <div className={css(style.iconWrapper)}>
+                <FontAwesomeIcon className={css(style.icon)} icon={faArrowCircleLeft} onClick={() => setDisplayDesc(!display)}></FontAwesomeIcon>            
             </div>
         </div>
     )

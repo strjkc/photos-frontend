@@ -5,6 +5,8 @@ import Image from './Image'
 const style = StyleSheet.create({
     itemContainer: {
         display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
         width: '100%',
         scrollSnapAlign: 'center',
     }      
