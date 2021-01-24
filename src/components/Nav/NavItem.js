@@ -71,7 +71,7 @@ useEffect(() => setRandom(Math.floor(Math.random() * Math.floor(underbarColors.l
             {    
                 button ?
                     <button role='nav-link' onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.login, styles.navItemHover, styles.navItem)}  onClick={handleLoginClick} id='login' type='button'>Log in</button>
-                :   <Link role='nav-link' onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id={text} onClick={handleClick} to={`/${text}`}>{displayedText}</Link>
+                :   <Link role='nav-link' onMouseOver={e => setHovered(e.target.id)} onMouseLeave={() => setHovered('')} className={css(styles.navItem, styles.navItemHover)} id={text.toLowerCase()} onClick={handleClick} to={`/${text}`}>{displayedText}</Link>
             }
             <div role='nav-underline' className={state === text  ? css(styles.underbarFeat) : hovered === text ? css(styles.underbarFeat) : css(styles.underbar)}></div>
         </div>

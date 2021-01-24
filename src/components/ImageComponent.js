@@ -58,7 +58,7 @@ const ImageComponent = ({photo, children}) => {
     return(
         <div onMouseOver={() => setContainerHovered(true)} onMouseLeave={() => setContainerHovered(false)} className={css(styles.imageContainer)}>
             {children}
-            <img className={containerHovered ? css(styles.imageHover, styles.image) : css(styles.image)} src={photo.thumbnail} alt='overview' onClick={handleImageClick}></img>
+            <img className={containerHovered ? css(styles.imageHover, styles.image) : css(styles.image)} src={photo.small} alt='overview' onClick={handleImageClick}></img>
             <p className={containerHovered ? css(styles.descriptionReveal) : css(styles.descritpion)}>{photo.description}</p>  
         </div>
     )

@@ -16,6 +16,7 @@ const FeaturedImage = ({photo, slideRight}) => {
             alignItems: 'center',
             position: 'relative',
             width: '100%',
+            height: '80%',
             scrollSnapAlign: 'center',
         }      
     })

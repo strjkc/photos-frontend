@@ -90,8 +90,8 @@ const LoginComponent = () => {
     }
  
     return (
-        <div className={css(styles.modalBackground, styles.modalAnimation)}>
-            <form className={css(styles.loginForm, styles.formAnimation)} id='login-form' onSubmit={handleLogin}>
+        <div id='login-blocker' className={css(styles.modalBackground, styles.modalAnimation)}>
+            <form id='login-form' className={css(styles.loginForm, styles.formAnimation)} id='login-form' onSubmit={handleLogin}>
                 <input name='username' type='text' placeholder='username' className={css(styles.inputFiled, styles.inputFiledPlaceholder)} id='login-form-username'  ></input>
                 <input name='password' type='password' placeholder='password' className={css(styles.inputFiled, styles.inputFiledPlaceholder)} id='login-form-password' ></input>
                 <div className={css(styles.buttonContainer)}>

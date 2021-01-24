@@ -5,7 +5,6 @@ const style = StyleSheet.create({
     imageWrapper: {
         display: 'flex',
         width: '70%',
-        height:'100%',
         borderRadius: '10px',
         position: 'relative',
         zIndex: '5'
@@ -19,7 +18,7 @@ const style = StyleSheet.create({
 const Image = ({photo}) => {
     return(
         <div className={css(style.imageWrapper)}>
-            <img className={css(style.imgStyle)} src={`/${photo.name}`} alt={photo.description}></img>
+            <img className={css(style.imgStyle)} src={photo.medium} alt={photo.description}></img>
         </div>
 
             )
