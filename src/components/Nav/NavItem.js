@@ -15,7 +15,7 @@ useEffect(() => setRandom(Math.floor(Math.random() * Math.floor(underbarColors.l
         padding: '3px',
         boxSizing: 'border-box',
         textDecoration: 'none',
-        color: 'white',
+        color: 'black',
         justifySelf: 'center',
         alignSelf: 'center',
         textAlign: 'center',

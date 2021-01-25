@@ -12,8 +12,7 @@ const HeaderComponent = ({children}) => {
     return(
         <div className='header-container'>
             <div className='title-container'>
-                <h1>Strahinja's Gallery</h1>
-                <div className='title-underline'></div>
+                <h1>Gallery</h1>
             </div>
             <div>
                 {children}

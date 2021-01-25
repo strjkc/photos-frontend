@@ -15,7 +15,6 @@ const Nav = () => {
     const styles = StyleSheet.create({
         navStyle: {
             display: 'flex',
-            backgroundColor: '#0A090B',
             borderRadius: '5px',
             '@media only screen and (max-width: 800px)': {
                 display: 'none'
