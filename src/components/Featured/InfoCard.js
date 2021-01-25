@@ -10,50 +10,19 @@ const InfoCard = ({description, display, slideRight, setDisplayDesc}) => {
         descriptionContainer: {
             display: 'flex',
             justifyContent: 'center',
+            position: 'absolute',
             width: '35%',
             height: '85%',
-            position: 'absolute',
             zIndex: '0',
             transitionDuration: '1s',
             backgroundColor: 'white',
             borderRadius: '10px',
-        },
-        positionRight:{
-            right: '25%',
-
-        },
-        positionLeft: {
-            left: '25%',
         },
         description: {
             display: 'block',
             color: 'black',
             height: '100%',
             width: '45%',
-        },
-        iconWrapper: {
-            width:'30px',
-            height: '30px',
-        },
-        icon: {
-            color: 'black',
-            height:'100%',
-            transition:'width 1s',
-            position:'absolute',
-            zIndex: '5'},
-        iconLeft:{
-            left: '1px'            
-        },
-        iconRight:{
-            right: '1px'
-        },
-        slideOut: {
-            transform: slideRight ? 'translate(-70%)' : 'translate(70%)' ,
-            transitionDuration: '1s'
-        },
-        animateText: {
-            animationName: display ? fadeIn : fadeOut,
-            animationDuration: '1.7s'
         }
     })
 

@@ -31,7 +31,7 @@ function App() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          backgroundColor: '#0A090B',
+          backgroundColor: '#FFFFF',
           width: '100vw',
         },
         mainContainer: {
@@ -39,10 +39,10 @@ function App() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          backgroundColor: '#0A090B'
+          backgroundColor: '#FFFFF'
           },
           noPictures: {
-            color: '#E5E5E5',
+            color: '#00000',
             padding: '20px 0'
           },
       }

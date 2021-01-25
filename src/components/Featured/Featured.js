@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         scrollSnapType: 'x mandatory',
-        width: '100vw',
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
