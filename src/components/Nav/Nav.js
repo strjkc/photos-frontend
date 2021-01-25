@@ -15,7 +15,8 @@ const Nav = () => {
     const styles = StyleSheet.create({
         navStyle: {
             display: 'flex',
-            borderRadius: '5px',
+            width: '40%',
+            justifyContent: 'space-around',
             '@media only screen and (max-width: 800px)': {
                 display: 'none'
             },

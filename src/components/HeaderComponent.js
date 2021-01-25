@@ -14,9 +14,7 @@ const HeaderComponent = ({children}) => {
             <div className='title-container'>
                 <h1>Gallery</h1>
             </div>
-            <div>
                 {children}
-            </div>
         </div>
     )
 }

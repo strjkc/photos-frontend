@@ -8,15 +8,10 @@ const NavBar = ({styling}) => {
 
     return (
             <div className={css(styling)}>
-                <NavItem text={'featured'} />
-                <NavItem text={'overview'} />
-                <NavItem text={'equipment'} />
-                <NavItem text={'about'} />
-                {
-                    user 
-                    ?   <NavItem text={'upload'} />
-                    :   <NavItem button={true} text={'login'} />
-                }
+                <NavItem text={'featured'} color={'#FF4224'} />
+                <NavItem text={'overview'} color={'#27BBE5'}/>
+                <NavItem text={'equipment'} color={'#FF8024'}/>
+                <NavItem text={'about'} color={'#FFBD24'}/>
             </div>
     )
 }
