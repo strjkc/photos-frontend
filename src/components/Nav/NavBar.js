@@ -12,6 +12,11 @@ const NavBar = ({styling}) => {
                 <NavItem text={'overview'} color={'#27BBE5'}/>
                 <NavItem text={'equipment'} color={'#FF8024'}/>
                 <NavItem text={'about'} color={'#FFBD24'}/>
+                {
+                    user 
+                    ?   <NavItem text={'upload'} />
+                    :   <NavItem button={true} text={'login'} />
+                }
             </div>
     )
 }

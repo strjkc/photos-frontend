@@ -10,15 +10,10 @@ import FeaturedImage from './FeaturedItem'
 const styles = StyleSheet.create({
     //TODO: finish style to match with css module
     container: {
-        margin: '50px 0',
-      
-    },
-    itemContainer: {
-        scrollSnapType: 'x mandatory',
-        width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        alignItems: 'center'
+      
     },
     noPhotoText: {
         color: '#E5E5E5',

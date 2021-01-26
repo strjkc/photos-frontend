@@ -6,9 +6,10 @@ import Image from './Image'
 const FeaturedImage = ({photo, slideRight}) => {
     const style = StyleSheet.create({
         itemContainer: {
+            margin: '50px 0 50px 0',
             display: 'flex',
             justifyContent: 'center',
-            width: '100%',
+            maxWidth: '80%',
             height: '80vh',
         }      
     })
