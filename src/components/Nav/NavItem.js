@@ -13,11 +13,19 @@ const NavItem = ({text, color}) => {
         width: '30px',
         backgroundColor: color,
         borderRadius: '100px'
-    }    
+    },
+    hoverItem: {
+        height: '30px',
+        width: '100px',
+        color: '#ffff',
+        borderRadius: '20px',
+        backgroundColor: color,
+    }
 })
 
     const dispatch = useDispatch()
-    const [hovered, setHovered] = useState('')
+    const [hovered, setHovered] = useState(false)
+    console.log(hovered)    
     const handleClick = (e) => {
         dispatch(setActive(e.target.id))
      }
@@ -27,10 +35,10 @@ const NavItem = ({text, color}) => {
     }
 
     return(
-        <Link role='nav-link'   id={text.toLowerCase()} onClick={handleClick} to={`/${text}`}>
-                    <div className={css(styles.navItem)}>
-        </div>
-
+        <Link role='nav-link' onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)} id={text.toLowerCase()} onClick={handleClick} to={`/${text}`}>
+            <div  className={css( hovered ? styles.hoverItem : styles.navItem)}>
+                {hovered ? text : ''}
+            </div>
         </Link>
 
         )
