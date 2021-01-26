@@ -31,7 +31,7 @@ function App() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          backgroundColor: '#FFFFF',
+          backgroundColor: 'rgba(249,249,249,1)',
           width: '100vw',
         },
         mainContainer: {

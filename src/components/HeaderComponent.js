@@ -13,6 +13,7 @@ const HeaderComponent = ({children}) => {
         <div className='header-container'>
             <div className='title-container'>
                 <h1>Gallery</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
                 {children}
         </div>
