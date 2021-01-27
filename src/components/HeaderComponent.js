@@ -22,12 +22,14 @@ const styles = StyleSheet.create({
     subText: {
         textAlign: 'center',
         fontSize: '18px',
-        color: '#535454'
+        color: '#535454',
+        fontFamily: 'InterMedium'
     },
     title: {
         textAlign: 'center',
         fontSize: '55px',
-        color: '#535454'
+        color: '#535454',
+        fontFamily: 'InterSemiBold'
     }})
 
 

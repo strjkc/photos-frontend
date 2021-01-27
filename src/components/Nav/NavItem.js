@@ -31,6 +31,7 @@ const NavItem = ({text, passedColor}) => {
         display: 'inline-block',
         lineHeight: '30px',
         verticalAlign: 'middle',
+        fontFamily: 'InterSemiBold'
 
     }
 })  
@@ -39,7 +40,7 @@ const NavItem = ({text, passedColor}) => {
     const dispatch = useDispatch()
     const [hovered, setHovered] = useState(false)
     const a = {color: startColor, config: {duration: 500} }
-    const [obj, set] = useSpring(() => (a));
+    const [color, set] = useSpring(() => (a));
     const handleClick = (e) => {
         dispatch(setActive(e.target.id))
      }
@@ -51,7 +52,7 @@ const NavItem = ({text, passedColor}) => {
         <Link         onMouseEnter={() => set({color: "rgba(249,249,249,1)" })}
         onMouseLeave={() => {set({color: startColor }); setHovered(false)}} style={{textDecoration: 'none'}} onMouseOver={() => setHovered(true)}  id={text.toLowerCase()} onClick={handleClick} to={`/${text}`}>
             <div  className={css( hovered ? styles.hoverItem : styles.navItem)}>
-                <animated.span  style={obj} className={css(styles.textStyle)}>{hovered ? text : ''}</animated.span>
+                <animated.span  style={color} className={css(styles.textStyle)}>{hovered ? text : ''}</animated.span>
             </div>
         </Link>
 

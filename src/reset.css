@@ -2,14 +2,22 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-@font-face {
-    font-family: defaultFont;
-    src: url(./fonts/KumbhSans-Regular.ttf);
-  }
 
 @font-face{
-    font-family: headerFont;
-    src: url(./fonts/Satisfy-Regular.ttf)
+    font-family: InterBold;
+    src: url('./fonts/Inter-Bold.ttf')
+}
+@font-face{
+    font-family: InterSemiBold;
+    src: url('./fonts/Inter-SemiBold.ttf')
+}
+@font-face{
+    font-family: InterRegular;
+    src: url('./fonts/Inter-Regular.ttf')
+}
+@font-face{
+    font-family: InterMedium;
+    src: url('./fonts/Inter-Medium.ttf')
 }
 
 html, body, div, span, applet, object, iframe,
