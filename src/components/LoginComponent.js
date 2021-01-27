@@ -50,10 +50,10 @@ const LoginComponent = () => {
         },
         modalBackground:{
             display: state ? 'flex' : 'none',
-            position: 'absolute', zIndex:'4', 
+            position: 'fixed', zIndex:'100', 
             backgroundColor: 'rgba(0, 0, 0, 0.3)', 
             width: '100vw', 
-            height: '100vh', 
+            height: '100%', 
             justifyContent: 'center', 
             alignItems: 'center'},
         buttonContainer: {

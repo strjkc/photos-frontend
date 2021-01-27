@@ -32,10 +32,11 @@ function App() {
           flexDirection: 'column',
           alignItems: 'center',
           backgroundColor: 'rgba(249,249,249,1)',
-          width: '100vw',
+          width: '100%',
         },
         mainContainer: {
           width: '90%',
+          height: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
