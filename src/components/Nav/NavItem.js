@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom'
 import {StyleSheet, css} from 'aphrodite'
 import {displayLogin} from '../../reducers/loginReducer'
 import {useSpring, animated} from 'react-spring'
-
-const NavItem = ({text, passedColor}) => {
+//TODO: seperate button and regular Link to different components
+const NavItem = ({text, passedColor, button}) => {
     const styles = StyleSheet.create({
     navItem: {
         height: '30px',
@@ -18,6 +18,11 @@ const NavItem = ({text, passedColor}) => {
         textAlign: 'center'
 
     },
+    buttonStyle: {
+        //transparent background
+        backgroundColor: '#f9f9f9',
+        border: 'none'
+    },  
     hoverItem: {
         transitionDuration: '0.5s',
         height: '30px',
@@ -38,23 +43,38 @@ const NavItem = ({text, passedColor}) => {
 
     const startColor = 'rgba(249,249,249,0)' 
     const dispatch = useDispatch()
+    //if true expand element
     const [hovered, setHovered] = useState(false)
-    const a = {color: startColor, config: {duration: 500} }
-    const [color, set] = useSpring(() => (a));
-    const handleClick = (e) => {
-        dispatch(setActive(e.target.id))
-     }
-     const state = useSelector(store => store.activeTab)
-     const handleLoginClick = (e) => {
+    const [color, set] = useSpring(() => ({color: startColor, config: {duration: 500} }));
+    const handleLoginClick = (e) => {
         dispatch(displayLogin())
     }
+    //change color and width
+    const onHover = () => { set({color: "rgba(249,249,249,1)" }); setHovered(true) }
+    const onHoverOut = () => { set({color: startColor }); setHovered(false) }
+
     return(
-        <Link         onMouseEnter={() => set({color: "rgba(249,249,249,1)" })}
-        onMouseLeave={() => {set({color: startColor }); setHovered(false)}} style={{textDecoration: 'none'}} onMouseOver={() => setHovered(true)}  id={text.toLowerCase()} onClick={handleClick} to={`/${text}`}>
-            <div  className={css( hovered ? styles.hoverItem : styles.navItem)}>
-                <animated.span  style={color} className={css(styles.textStyle)}>{hovered ? text : ''}</animated.span>
-            </div>
-        </Link>
+        
+            button 
+            ?   <button id={text.toLowerCase()}
+                    className={css(styles.buttonStyle)}
+                    onMouseEnter={onHover}
+                    onMouseLeave={onHoverOut} style={{textDecoration: 'none'}}
+                    onClick={handleLoginClick}>
+                    <div  className={css( hovered ? styles.hoverItem : styles.navItem)}>
+                        <animated.span  style={color} className={css(styles.textStyle)}>{hovered ? text : ''}</animated.span>
+                    </div>
+                </button>
+            :   <Link id={text.toLowerCase()}
+                    onMouseEnter={onHover}
+                    onMouseLeave={onHoverOut} style={{textDecoration: 'none'}} 
+                    to={`/${text}`}>
+                    <div  className={css( hovered ? styles.hoverItem : styles.navItem)}>
+                        <animated.span  style={color} className={css(styles.textStyle)}>{hovered ? text : ''}</animated.span>
+                    </div>
+                </Link>
+        
+        
 
         )
 }
