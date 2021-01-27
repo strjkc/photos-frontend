@@ -14,8 +14,8 @@ const NavBar = ({styling}) => {
                 <NavItem text={'about'} passedColor={"rgba(255,189,36)"}/>
                 {
                     user 
-                    ?   <NavItem text={'upload'} passedColor={'fff'} />
-                    :   <NavItem button={true} text={'login'} passedColor={'fff'}/>
+                    ?   <NavItem text={'upload'} passedColor={"rgba(55,187,108)"} />
+                    :   <NavItem button={true} text={'login'} passedColor={"rgba(55,187,108)"}/>
                 }
             </div>
     )

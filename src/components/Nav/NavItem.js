@@ -21,7 +21,7 @@ const NavItem = ({text, passedColor}) => {
     hoverItem: {
         transitionDuration: '0.5s',
         height: '30px',
-        width: '100px',
+        width: '120px',
         color: '#ffff',
         borderRadius: '20px',
         backgroundColor: passedColor,
