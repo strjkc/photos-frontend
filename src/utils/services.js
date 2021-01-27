@@ -17,6 +17,7 @@ const getPhotos = () => {
 }
 
 const login = async (credentials) =>{
+    console.log('creadentials ', credentials)
     const response = await axios.post('/users/login', credentials)
     return response.data
 }

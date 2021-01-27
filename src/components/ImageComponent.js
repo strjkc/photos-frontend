@@ -7,9 +7,11 @@ const styles = StyleSheet.create({
     imageContainer: {
         position: 'relative',
         overflow: 'hidden',
-        margin: '0 0 30px 0',
+        margin: '50px 0 50px 0',
         boxSizing: 'border-box',
-        transition: 'ease-in 400ms'
+        transition: 'ease-in 400ms',
+        borderRadius: '10px',
+        boxShadow: '0px 4px 15px 2px rgba(0,0,0,0.15)'
     },
     image: {
         width: '100%',
@@ -22,30 +24,6 @@ const styles = StyleSheet.create({
             transition: '400ms',
             zIndex: '0'
     },
-    descriptionReveal: {
-            display: 'block',
-           position: 'absolute',
-            transition: 'ease-in',
-            transitionDuration: '900ms',
-            transitionDelay: '150ms',
-            zIndex: '2',
-            backgroundColor: 'rgba(100,100,200, 0.7)',
-            width: '90%',
-            borderRadius: '10px',
-            height: '25%',
-            padding: '5px',
-            color: '#E5E5E5',
-            bottom: '5px',
-            left: '5%'
-    },
-    descritpion: {
-        position: 'absolute',
-        padding: '5px',
-        borderRadius: '10px',
-
-            zIndex: '-1'
-
-    }
 })
 
 const ImageComponent = ({photo, children}) => {
@@ -59,7 +37,6 @@ const ImageComponent = ({photo, children}) => {
         <div onMouseOver={() => setContainerHovered(true)} onMouseLeave={() => setContainerHovered(false)} className={css(styles.imageContainer)}>
             {children}
             <img className={containerHovered ? css(styles.imageHover, styles.image) : css(styles.image)} src={photo.small} alt='overview' onClick={handleImageClick}></img>
-            <p className={containerHovered ? css(styles.descriptionReveal) : css(styles.descritpion)}>{photo.description}</p>  
         </div>
     )
 }
