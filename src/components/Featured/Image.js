@@ -16,6 +16,9 @@ const style = StyleSheet.create({
         width: '100%',
         height: '85%',
         borderRadius: '10px 10px 2px 2px'
+    },
+    descriptionStyle: {
+        fontFamily: 'InterRegular'
     }
 
 })
@@ -23,7 +26,7 @@ const Image = ({photo}) => {
     return(
         <div className={css(style.imageWrapper)}>
             <img className={css(style.imgStyle)} src={photo.medium} alt={photo.description}></img>
-            neki text
+            <span className={css(style.descriptionStyle)}>{photo.description}</span>
         </div>
 
             )
