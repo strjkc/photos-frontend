@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         margin: '50px 0 0 0',
         backgroundColor: 'rgba(255,128,36)',
         color: 'rgb(249, 249, 249)',
-        fontFamily: 'InterRegular'
+        fontFamily: 'InterRegular',
+        boxShadow: '0px 4px 15px 2px rgba(0,0,0,0.15)'
     },
     mail: {
         margin: '10px 0',
