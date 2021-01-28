@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import InfoCard from './InfoCard'
+import {useSpring, animated} from 'react-spring'
 import {StyleSheet, css} from 'aphrodite'
 import Image from './Image'
 
@@ -14,11 +15,12 @@ const FeaturedImage = ({photo, slideRight}) => {
         }      
     })
 
+    const fadeIn = useSpring({opacity: 1, from: {opacity: 0.3}, config: {duration: 500}})
     const [displayDesc, setDisplayDesc] = useState(false)
     return (
-        <div key={photo.id} className={css(style.itemContainer)}> 
+        <animated.div style={fadeIn} key={photo.id} className={css(style.itemContainer)}> 
             <Image photo={photo} displayDesc={displayDesc} setDisplayDesc={setDisplayDesc}/>
-        </div>)
+        </animated.div>)
 }
 
 export default FeaturedImage
