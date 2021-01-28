@@ -2,13 +2,7 @@ import React from 'react'
 import {StyleSheet, css} from 'aphrodite'
 import SocialsList from './SocialsList'
 import AboutArticle from './AboutArticle'
-/*
-"rgba(255,66,36)"
-"rgba(39,187,229)
-"rgb(255,128,36)"
-"rgba(255,189,36)
-55,187,108
-*/
+
 const styles = StyleSheet.create({
     wrapper: {
         display: 'flex',

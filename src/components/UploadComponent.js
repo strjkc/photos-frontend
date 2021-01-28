@@ -6,18 +6,27 @@ import {setActive} from '../reducers/activeTabReducer'
 import {removeUser} from '../reducers/userRedurcer'
 import services from '../utils/services'
 import {fetchPhotos} from '../reducers/photosReducer'
+/*
+"rgba(255,66,36)"
+"rgba(39,187,229)
+"rgb(255,128,36)"
+"rgba(255,189,36)
+55,187,108
+        color: 'rgb(249, 249, 249)',
 
+*/
 const styles = StyleSheet.create({
     //TODO: fix color
     wrapper: {
         display: 'flex',
-        width: '100%',
+        width: '64%',
         padding: '20px 0',
         flexDirection: 'column',
         alignItems: 'center',
-        color: '#E5E5E5',
+        color: 'rgb(249, 249, 249)',
         backgroundColor: '#1F201D',
-        borderRadius: '10px'
+        borderRadius: '10px',
+        margin: '50px 0 0 0'
     },
     descriptionWrapper: {
         width: '70%',
@@ -30,7 +39,6 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'column',
         alignItems: 'center',
-        color: '#E5E5E5',
         backgroundColor: '#1F201D',    
     },
     formChildren: {
@@ -55,16 +63,15 @@ const styles = StyleSheet.create({
         resize: 'none',
         backgroundColor: '#1F201D',
         borderRadius: '5px',
-        color: '#E5E5E5'
     },
     inputFiledPlaceholder:{
         "::placeholder": {
-            color: '#E5E5E5'
+            color: 'rgb(249, 249, 249)'
         }
     },
     inputFieldFocus: {
         ":focus": {
-            color: '#E5E5E5'
+            color: 'rgb(249, 249, 249)'
         }
     },
     button: {
@@ -74,7 +81,6 @@ const styles = StyleSheet.create({
         border: 'none',
         borderRadius: '5px',
         outline: 'none',
-        color: '#E5E5E5',
         margin: '0',
         padding: '5px',
     },
@@ -95,7 +101,19 @@ const UploadComponent = () => {
     const [isFeatured, setIsFeatured] = useState(false)
     const [description, setDescritpion] = useState('')
     const dispatch = useDispatch()
+    const placeholders = [
+        'You are uploading a masterpiece (no doubt), tell the eager audiance more about it',
+        'Yes, pictures are worth a thousand words, but not the shitty ones. Please describe yours',
+        'Tell us more about the time you left your room',
+        'Wow, such art, much color',
+        'Oh great, another picture of your pets',
+        'Why write this lol, not like anyone is wisiting this website',
+        'Please describe what you felt in this moment to you worldwide audience',
+    ]
 
+    const genPlaceholder = (min, max) => 
+        placeholders[Math.floor(Math.random() * (max - min) + min)]
+    console.log('asdf',genPlaceholder(0, placeholders.length))
 
     const logOut = () => {
         window.localStorage.removeItem('user')
@@ -132,7 +150,7 @@ const UploadComponent = () => {
         <form onSubmit={dumb} className={css(styles.formStyle)}>
           <input ref={imageRef} type='file' className={css(styles.formChildren)} onChange={(e) => setImage(e.target.files[0])} ></input>
           <div className={css(styles.descriptionWrapper)}>
-            <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder='Describe the photo' value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
+            <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={genPlaceholder(0, placeholders.length)} value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
               <div className={css(styles.formChildren, styles.checkBox)}>
                 <label htmlFor='upload-checkbox' className={css(styles.checkBox)} >Is featured</label>
             <input ref={checkBoxRef} type='checkbox' id='upload-checkbox' value={isFeatured} onChange={() => setIsFeatured(!isFeatured)} ></input>
