@@ -8,10 +8,10 @@ const NavBar = ({styling}) => {
 
     return (
             <div className={css(styling)}>
-                <NavItem text={'featured'} passedColor={"rgba(255,66,36)"} />
-                <NavItem text={'overview'} passedColor={"rgba(39,187,229)"}/>
+                <NavItem text={'featured'}  passedColor={"rgba(255,66,36)"} />
+                <NavItem text={'overview'}  passedColor={"rgba(39,187,229)"}/>
                 <NavItem text={'equipment'} passedColor={"rgb(255,128,36)"}/>
-                <NavItem text={'about'} passedColor={"rgba(255,189,36)"}/>
+                <NavItem text={'about'}     passedColor={"rgba(255,189,36)"}/>
                 {
                     user 
                     ?   <NavItem text={'upload'} passedColor={"rgba(55,187,108)"} />
