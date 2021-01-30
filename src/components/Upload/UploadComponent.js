@@ -32,10 +32,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(255, 255, 255)',
         borderRadius: '10px',
         margin: '50px 0 0 0',
-        boxShadow: '0px 4px 15px 2px rgba(0,0,0,0.15)'
+        boxShadow: '0px 4px 15px 2px rgba(0,0,0,0.15)',
+        fontFamily: 'InterRegular'
     },
     itemsMargin: {
-        margin: '5px'
+        margin: '10px 0 10px 0'
     },
     descriptionWrapper: {
         width: '100%',
@@ -70,13 +71,11 @@ const styles = StyleSheet.create({
     },
     inputFiledPlaceholder:{
         "::placeholder": {
-            color: 'rgb(83, 84, 84)'
+            color: 'rgb(168 171 171)'
         }
     },
     inputFieldFocus: {
-        ":focus": {
-            color: 'rgb(83, 84, 84)'
-        }
+        color: 'rgb(83, 84, 84)'
     },
     button: {
         width: '10%',
@@ -87,7 +86,8 @@ const styles = StyleSheet.create({
         outline: 'none',
         margin: '0',
         padding: '5px',
-        color: 'white'
+        color: 'white',
+        fontFamily: 'InterRegular'
     },
     logoutButton: {
         width: '10%',
@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
         margin: '0',
         padding: '5px',
         backgroundColor: 'rgba(255,66,36)',
-        color: 'white'
+        color: 'white',
+        fontFamily: 'InterRegular'
     },
     submitButtonHover: {
         ':hover': {
@@ -165,7 +166,7 @@ const UploadComponent = () => {
         <form onSubmit={dumb} className={css(styles.formStyle, styles.itemsMargin)}>
             <ImageBrowser image={image} setImage={setImage} inheritStyles={css(styles.itemsMargin)} />
             <div className={css(styles.descriptionWrapper, styles.itemsMargin)}>
-                <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={'Description'} value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
+                <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={'Describe the photo'} value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
             </div>
             <Checkbox checkBoxRef={checkBoxRef} isFeatured={isFeatured} setIsFeatured={setIsFeatured} inheritStyles={css(styles.itemsMargin)} />
             <div className={css(styles.buttonWrapper, styles.itemsMargin)}>
