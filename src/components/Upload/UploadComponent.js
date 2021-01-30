@@ -2,10 +2,14 @@ import React, {useRef, useState} from 'react'
 import {StyleSheet, css} from 'aphrodite'
 import {useHistory} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
-import {setActive} from '../reducers/activeTabReducer'
-import {removeUser} from '../reducers/userRedurcer'
-import services from '../utils/services'
-import {fetchPhotos} from '../reducers/photosReducer'
+import {setActive} from '../../reducers/activeTabReducer'
+import {removeUser} from '../../reducers/userRedurcer'
+import services from '../../utils/services'
+import {fetchPhotos} from '../../reducers/photosReducer'
+import ImageBrowser from './ImageBrowser'
+import Checkbox from './Checkbox'
+
+
 /*
 "rgba(255,66,36)"
 "rgba(39,187,229)
@@ -23,33 +27,43 @@ const styles = StyleSheet.create({
         padding: '20px 0',
         flexDirection: 'column',
         alignItems: 'center',
-        color: 'rgb(249, 249, 249)',
-        backgroundColor: '#1F201D',
+        justifyContent: 'center',
+        color: 'rgb(83, 84, 84)',
+        backgroundColor: 'rgb(255, 255, 255)',
         borderRadius: '10px',
-        margin: '50px 0 0 0'
+        margin: '50px 0 0 0',
+        boxShadow: '0px 4px 15px 2px rgba(0,0,0,0.15)'
+    },
+    itemsMargin: {
+        '.formStyle>*': {
+            margin: '5px'
+        }
     },
     descriptionWrapper: {
-        width: '70%',
+        width: '100%',
+        height: '150px',
         padding: '10px',
-        border: 'solid white 1px',
+        border: 'solid rgb(83, 84, 84) 1px',
         borderRadius: '5px'
     }, 
     formStyle: {
         display: 'flex',
-        width: '100%',
+        width: '90%',
         flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: '#1F201D',    
+        alignItems: 'flex-start',
+        backgroundColor: 'rgb(255, 255, 255)',    
     },
     formChildren: {
-        margin: '15px 0'
-    },
-    title: {
-        fontSize: '20px'
+        margin: '15px 0',
+        width: '70%',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
     },
     checkBoxWrapper: {
+        width: '70%',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center'
     },
     checkBox: {
@@ -61,36 +75,57 @@ const styles = StyleSheet.create({
         outline: 'none',
         border: 'none',
         resize: 'none',
-        backgroundColor: '#1F201D',
+        backgroundColor: 'rgb(255, 255, 255)',
         borderRadius: '5px',
     },
     inputFiledPlaceholder:{
         "::placeholder": {
-            color: 'rgb(249, 249, 249)'
+            color: 'rgb(83, 84, 84)'
         }
     },
     inputFieldFocus: {
         ":focus": {
-            color: 'rgb(249, 249, 249)'
+            color: 'rgb(83, 84, 84)'
         }
     },
     button: {
         width: '10%',
-        backgroundColor: '#333630',
+        backgroundColor: 'rgba(55,187,108)',
         tableLayout: 'fixed',
         border: 'none',
         borderRadius: '5px',
         outline: 'none',
         margin: '0',
         padding: '5px',
+        color: 'white'
     },
-    buttonHover: {
+    logoutButton: {
+        width: '10%',
+        tableLayout: 'fixed',
+        border: 'none',
+        borderRadius: '5px',
+        outline: 'none',
+        margin: '0',
+        padding: '5px',
+        backgroundColor: 'rgba(255,66,36)',
+        color: 'white'
+    },
+    submitButtonHover: {
         ':hover': {
-            background: 'radial-gradient(circle, rgba(241,194,65,1) 0%, rgba(235,172,0,1) 100%)',
+            background: 'rgba(55,187,108)',
             borderRadius: '5px',
-            color: 'black',
-    }
-    }
+            color: 'rgb(249, 249, 249)',
+        }
+    },
+    logoutButtonHover: {
+        ':hover': {
+            background: 'rgba(255,66,36)',
+            borderRadius: '5px',
+            color: 'rgb(249, 249, 249)',
+
+        }
+    },
+
 })
 
 const UploadComponent = () => {
@@ -114,7 +149,7 @@ const UploadComponent = () => {
     const genPlaceholder = (min, max) => 
         placeholders[Math.floor(Math.random() * (max - min) + min)]
     console.log('asdf',genPlaceholder(0, placeholders.length))
-
+    console.log(image)
     const logOut = () => {
         window.localStorage.removeItem('user')
         history.push('/featured')
@@ -146,19 +181,17 @@ const UploadComponent = () => {
 
     return(
     <div className={css(styles.wrapper)}>
-        <h3 className={css(styles.title)}>Upload Photo</h3>
         <form onSubmit={dumb} className={css(styles.formStyle)}>
-          <input ref={imageRef} type='file' className={css(styles.formChildren)} onChange={(e) => setImage(e.target.files[0])} ></input>
-          <div className={css(styles.descriptionWrapper)}>
-            <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={genPlaceholder(0, placeholders.length)} value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
-              <div className={css(styles.formChildren, styles.checkBox)}>
-                <label htmlFor='upload-checkbox' className={css(styles.checkBox)} >Is featured</label>
-            <input ref={checkBoxRef} type='checkbox' id='upload-checkbox' value={isFeatured} onChange={() => setIsFeatured(!isFeatured)} ></input>
-              </div>
-          </div>
-            <button type='submit' className={css(styles.button, styles.buttonHover, styles.formChildren)}>Upload</button>
+            <ImageBrowser image={image} setImage={setImage} />
+            <div className={css(styles.descriptionWrapper)}>
+                <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={genPlaceholder(0, placeholders.length)} value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
+            </div>
+            <Checkbox checkBoxRef={checkBoxRef} isFeatured={isFeatured} setIsFeatured={setIsFeatured} />
+            <div>
+                <button type='submit' className={css(styles.button, styles.submitButtonHover, styles.formChildren)}>Upload</button>
+                <button className={css(styles.logoutButton, styles.logoutButtonHover)} onClick={logOut}>Log out</button>
+            </div>
           </form>
-          <button className={css(styles.button, styles.buttonHover)} onClick={logOut}>Log out</button>
     </div>
         
     )
