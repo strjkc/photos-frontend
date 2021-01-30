@@ -125,7 +125,6 @@ const styles = StyleSheet.create({
 
 const UploadComponent = () => {
     const history = useHistory()
-    const imageRef = useRef()
     const checkBoxRef = useRef()
     const [image, setImage] = useState(null)
     const [isFeatured, setIsFeatured] = useState(false)
@@ -150,7 +149,6 @@ const UploadComponent = () => {
     const resetValues = () => {
         setIsFeatured(false)
         setImage(null) 
-        imageRef.current.value = null
         checkBoxRef.current.checked = false
         setDescritpion('')
     }
