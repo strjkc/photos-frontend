@@ -35,15 +35,14 @@ const styles = StyleSheet.create({
         boxShadow: '0px 4px 15px 2px rgba(0,0,0,0.15)'
     },
     itemsMargin: {
-        '.formStyle>*': {
-            margin: '5px'
-        }
+        margin: '5px'
     },
     descriptionWrapper: {
         width: '100%',
         height: '150px',
         padding: '10px',
-        border: 'solid rgb(83, 84, 84) 1px',
+        backgroundColor: '#F2F2F2',
+        border: 'solid #DCDCDC 1px',
         borderRadius: '5px'
     }, 
     formStyle: {
@@ -70,12 +69,12 @@ const styles = StyleSheet.create({
         margin: '0 5px'
     },
     inputField: {
-        height: '200px',
+        height: '100%',
         width: '100%',
         outline: 'none',
         border: 'none',
         resize: 'none',
-        backgroundColor: 'rgb(255, 255, 255)',
+        backgroundColor: '#F2F2F2',
         borderRadius: '5px',
     },
     inputFiledPlaceholder:{
@@ -123,9 +122,13 @@ const styles = StyleSheet.create({
             borderRadius: '5px',
             color: 'rgb(249, 249, 249)',
 
-        }
+        },
     },
-
+    buttonWrapper: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-around',
+    }
 })
 
 const UploadComponent = () => {
@@ -136,20 +139,7 @@ const UploadComponent = () => {
     const [isFeatured, setIsFeatured] = useState(false)
     const [description, setDescritpion] = useState('')
     const dispatch = useDispatch()
-    const placeholders = [
-        'You are uploading a masterpiece (no doubt), tell the eager audiance more about it',
-        'Yes, pictures are worth a thousand words, but not the shitty ones. Please describe yours',
-        'Tell us more about the time you left your room',
-        'Wow, such art, much color',
-        'Oh great, another picture of your pets',
-        'Why write this lol, not like anyone is wisiting this website',
-        'Please describe what you felt in this moment to you worldwide audience',
-    ]
 
-    const genPlaceholder = (min, max) => 
-        placeholders[Math.floor(Math.random() * (max - min) + min)]
-    console.log('asdf',genPlaceholder(0, placeholders.length))
-    console.log(image)
     const logOut = () => {
         window.localStorage.removeItem('user')
         history.push('/featured')
@@ -181,14 +171,14 @@ const UploadComponent = () => {
 
     return(
     <div className={css(styles.wrapper)}>
-        <form onSubmit={dumb} className={css(styles.formStyle)}>
-            <ImageBrowser image={image} setImage={setImage} />
-            <div className={css(styles.descriptionWrapper)}>
-                <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={genPlaceholder(0, placeholders.length)} value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
+        <form onSubmit={dumb} className={css(styles.formStyle, styles.itemsMargin)}>
+            <ImageBrowser image={image} setImage={setImage} inheritStyles={css(styles.itemsMargin)} />
+            <div className={css(styles.descriptionWrapper, styles.itemsMargin)}>
+                <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={'Description'} value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
             </div>
-            <Checkbox checkBoxRef={checkBoxRef} isFeatured={isFeatured} setIsFeatured={setIsFeatured} />
-            <div>
-                <button type='submit' className={css(styles.button, styles.submitButtonHover, styles.formChildren)}>Upload</button>
+            <Checkbox checkBoxRef={checkBoxRef} isFeatured={isFeatured} setIsFeatured={setIsFeatured} inheritStyles={css(styles.itemsMargin)} />
+            <div className={css(styles.buttonWrapper, styles.itemsMargin)}>
+                <button type='submit' className={css(styles.button, styles.submitButtonHover)}>Upload</button>
                 <button className={css(styles.logoutButton, styles.logoutButtonHover)} onClick={logOut}>Log out</button>
             </div>
           </form>
