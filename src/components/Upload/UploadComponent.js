@@ -59,15 +59,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center'
     },
-    checkBoxWrapper: {
-        width: '70%',
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    },
-    checkBox: {
-        margin: '0 5px'
-    },
     inputField: {
         height: '100%',
         width: '100%',
