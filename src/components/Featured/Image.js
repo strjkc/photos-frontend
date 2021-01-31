@@ -18,7 +18,15 @@ const style = StyleSheet.create({
         borderRadius: '10px 10px 2px 2px'
     },
     descriptionStyle: {
-        fontFamily: 'InterRegular'
+        margin:'10px 0 0 10px',
+        lineHeight: '1.3'
+    },
+    descriptionWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '70%',
+        height: '15%',
+        overflow: 'hidden'
     }
 
 })
@@ -26,7 +34,9 @@ const Image = ({photo}) => {
     return(
         <div className={css(style.imageWrapper)}>
             <img className={css(style.imgStyle)} src={photo.medium} alt={photo.description}></img>
-            <span className={css(style.descriptionStyle)}>{photo.description}</span>
+            <div className={css(style.descriptionWrapper)}>
+                <span className={css(style.descriptionStyle)}>{photo.description}</span>
+            </div>
         </div>
 
             )
