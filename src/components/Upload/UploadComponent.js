@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
         margin: '10px 0 10px 0'
     },
     descriptionWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
         width: '100%',
         height: '150px',
         padding: '10px',
@@ -101,10 +103,14 @@ const styles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         justifyContent: 'space-around',
+    },
+    charCount: {
+        textAlign:'end'
     }
 })
 
 const UploadComponent = () => {
+    const maxDescriptionLength = 238
     const history = useHistory()
     const checkBoxRef = useRef()
     const [image, setImage] = useState(null)
@@ -140,12 +146,20 @@ const UploadComponent = () => {
         resetValues()
 }
 
+const updateDescription = word => {
+    console.log(word)
+    if (word.length <= maxDescriptionLength)
+        setDescritpion(word)
+
+}
+
     return(
     <div className={css(styles.wrapper)}>
         <form onSubmit={submitPhoto} className={css(styles.formStyle, styles.itemsMargin)}>
             <ImageBrowser image={image} setImage={setImage} inheritStyles={css(styles.itemsMargin)} />
             <div className={css(styles.descriptionWrapper, styles.itemsMargin)}>
-                <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={'Describe the photo'} value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
+                <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={'Describe the photo'} value={description} onChange={(e) => updateDescription(e.target.value)}></textarea>
+                <div className={css(styles.charCount)}>{description.length}/{maxDescriptionLength}</div>
             </div>
             <Checkbox checkBoxRef={checkBoxRef} isFeatured={isFeatured} setIsFeatured={setIsFeatured} inheritStyles={css(styles.itemsMargin)} />
             <div className={css(styles.buttonWrapper, styles.itemsMargin)}>

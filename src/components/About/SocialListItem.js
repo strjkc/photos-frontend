@@ -7,9 +7,6 @@ const styles = StyleSheet.create({
         display: 'block',
         color: 'white'
     },
-    link: {
-        color: 'white'
-    },
     icons: {
         fontSize: '25px'
     }
