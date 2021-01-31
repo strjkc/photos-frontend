@@ -1,14 +1,9 @@
-import React, {useState, useEffect, useCallback} from 'react'
-import './featured.css'
+import React from 'react'
 import {StyleSheet, css} from 'aphrodite'
 import { useSelector } from 'react-redux'
 import FeaturedItem from './FeaturedItem'
-import Carousel from 'react-bootstrap/Carousel'
-import {useTransition, animated, config} from 'react-spring'
-import FeaturedImage from './FeaturedItem'
 
 const styles = StyleSheet.create({
-    //TODO: finish style to match with css module
     container: {
         display: 'flex',
         flexDirection: 'column',

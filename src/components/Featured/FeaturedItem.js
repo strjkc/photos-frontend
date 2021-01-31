@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import InfoCard from './InfoCard'
 import {useSpring, animated} from 'react-spring'
 import {StyleSheet, css} from 'aphrodite'
 import Image from './Image'
