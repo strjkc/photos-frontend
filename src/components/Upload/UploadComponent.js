@@ -9,18 +9,7 @@ import {fetchPhotos} from '../../reducers/photosReducer'
 import ImageBrowser from './ImageBrowser'
 import Checkbox from './Checkbox'
 
-
-/*
-"rgba(255,66,36)"
-"rgba(39,187,229)
-"rgb(255,128,36)"
-"rgba(255,189,36)
-55,187,108
-        color: 'rgb(249, 249, 249)',
-
-*/
 const styles = StyleSheet.create({
-    //TODO: fix color
     wrapper: {
         display: 'flex',
         width: '64%',
@@ -52,13 +41,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         backgroundColor: 'rgb(255, 255, 255)',    
-    },
-    formChildren: {
-        margin: '15px 0',
-        width: '70%',
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
     },
     inputField: {
         height: '100%',
@@ -113,7 +95,6 @@ const styles = StyleSheet.create({
             background: 'rgba(255,66,36)',
             borderRadius: '5px',
             color: 'rgb(249, 249, 249)',
-
         },
     },
     buttonWrapper: {
@@ -153,7 +134,7 @@ const UploadComponent = () => {
         setDescritpion('')
     }
 
-    const dumb = async (e) => {
+    const submitPhoto = async (e) => {
         e.preventDefault()
         await upload()
         resetValues()
@@ -161,7 +142,7 @@ const UploadComponent = () => {
 
     return(
     <div className={css(styles.wrapper)}>
-        <form onSubmit={dumb} className={css(styles.formStyle, styles.itemsMargin)}>
+        <form onSubmit={submitPhoto} className={css(styles.formStyle, styles.itemsMargin)}>
             <ImageBrowser image={image} setImage={setImage} inheritStyles={css(styles.itemsMargin)} />
             <div className={css(styles.descriptionWrapper, styles.itemsMargin)}>
                 <textarea type='text' className={css(styles.inputField, styles.inputFieldFocus, styles.inputFiledPlaceholder)} placeholder={'Describe the photo'} value={description} onChange={(e) => setDescritpion(e.target.value)}></textarea>
