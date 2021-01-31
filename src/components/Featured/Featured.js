@@ -11,9 +11,10 @@ const styles = StyleSheet.create({
       
     },
     noPhotoText: {
-        color: '#E5E5E5',
-        padding: '20px 0',
-        textAlign: 'center'
+        margin: '50px 0 0 0',
+        color: 'rgb(83, 84, 84)',
+        textAlign: 'center',
+        fontFamily: 'InterSemibold'
     }
 }) 
 

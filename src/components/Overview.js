@@ -10,14 +10,14 @@ import {StyleSheet, css} from 'aphrodite'
 const Overview = ({setDisplayFullImage}) => {
     const photos = useSelector(store => store.photos)
     
-    const styles = StyleSheet.create(
-        {
-            noPictures: {
-                color: '#E5E5E5',
-                padding: '20px 0'
-            },
+    const styles = StyleSheet.create({
+        noPictures: {
+            margin: '50px 0 0 0',
+            color: 'rgb(83, 84, 84)',
+            textAlign: 'center',
+            fontFamily: 'InterSemibold'
         }
-    )
+    })
 
     return (
         <>
