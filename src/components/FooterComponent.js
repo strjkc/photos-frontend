@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, css} from 'aphrodite'
-import githubImage from '../images/GitHub-Mark-Light-32px.png'
+import githubImage from '../images/GitHub-Mark-32px.png'
 const FooterComponent = () => {
 
     const styles = StyleSheet.create({
@@ -30,13 +30,13 @@ const FooterComponent = () => {
         },
         githubLogo: {
             height: '20px',
-            margin: '0 5px'
+            margin: '0 5px',
+            color: 'black'
         },
     })
 
     return(
         <div className={css(styles.footerContainer)}>
-            <p className={css(styles.itemMargin)}>by me for me (and you, the visitor, I guess <span><i className="em em-slightly_smiling_face" aria-label="SLIGHTLY SMILING FACE"></i></span> )</p>
             <div className={css(styles.itemMargin)}>
                 <p className={css(styles.sourceTitle)}>Source:</p>
                 <div className={css(styles.sourceWrapper, styles.itemMargin)}>
