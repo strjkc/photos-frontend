@@ -16,9 +16,9 @@ const Equipment = () => {
     const sampleText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper mi nec arcu auctor, vel vulputate orci semper. Aenean vitae porttitor lectus. Phasellus at lacinia diam, ac suscipit lacus. In pellentesque mi eget volutpat vestibulum. Sed pharetra mi non diam tincidunt, non luctus purus faucibus.'
     return (
         <div className={css(styles.wrapper)}>
-            <EquipmentItem text={sampleText} img={picUrl} alt={'camera'} />
-            <EquipmentItem text={sampleText} img={picUrl} alt={'tripod'} />
-            <EquipmentItem text={sampleText} img={picUrl} alt={'prop'} />
+            <EquipmentItem text={sampleText} img={picUrl} order={1} alt={'camera'} />
+            <EquipmentItem text={sampleText} img={picUrl} order={2} alt={'tripod'} />
+            <EquipmentItem text={sampleText} img={picUrl} order={1} alt={'prop'} />
         </div>
     )
 }
