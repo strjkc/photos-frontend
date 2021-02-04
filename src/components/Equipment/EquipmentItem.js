@@ -1,12 +1,11 @@
 import React from 'react'
 import {StyleSheet, css} from 'aphrodite'
-import NavItem from '../Nav/NavItem'
 
 const styles = StyleSheet.create({
     elementContainer: {
-        width: '64%',
+        width: '100%',
         height: '274px',
-        margin: '0px 0 0 0',
+        margin: '0px 0 50px 0',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -57,12 +56,6 @@ const EquipmentItem = ({img, alt, text}) => {
                 <div className={css(styles.textContainer)}>
                     <p className={css(styles.text)}>{text}</p>
                 </div>
-            </div>
-            <div className={css(styles.dotsWrapper)}>
-                <NavItem passedColor={'rgba(39, 187, 229)'} text={''} button={false} />
-                <NavItem passedColor={'rgba(39, 187, 229)'} text={''} button={false} />
-                <NavItem passedColor={'rgba(39, 187, 229)'} text={''} button={false} />
-                <NavItem passedColor={'rgba(39, 187, 229)'} text={''} button={false} />
             </div>
         </>
     )
