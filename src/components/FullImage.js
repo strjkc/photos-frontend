@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     },
     image: {
         height: '100%',
-        width: '100%'
+        width: '100%',
+        borderRadius: '10px'
     },
     modalContainer: {
         display: 'flex',
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         zIndex:'100',
         height: '100%', 
         width: '100vw',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+        backgroundColor: 'rgba(0, 0, 0, 0.8)', 
 
     },
     download:{
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
 const FullImage = () => {
     const image = useSelector(store => store.fullImage)
     const dispatch = useDispatch()
-
+    console.log('image: ', image)
     const handleDismiss = (e) => {
         console.log('fulliamgetarget', e.target.className)
         if (typeof e.target.className === 'string')
@@ -53,7 +54,7 @@ const FullImage = () => {
         <div onClick={handleDismiss} className={css(styles.modalContainer)}>
             <div className={css(styles.wrapper)}>
                 <FontAwesomeIcon onClick={handleDownload} icon={faArrowAltCircleDown} className={css(styles.download)}><div className='thisclass'></div></FontAwesomeIcon>
-                <img className={css(styles.image)} src={image.name} alt='fullscreenImage'></img>
+                <img className={css(styles.image)} src={image.large} alt='fullscreenImage'></img>
             </div>
         </div>
     )
