@@ -42,11 +42,11 @@ const FooterComponent = () => {
                 <div className={css(styles.sourceWrapper, styles.itemMargin)}>
                     <div className={css(styles.sourceItemWrapper)}>
                         <img className={css(styles.githubLogo)} src={githubImage} alt='gitHub logo'></img>
-                        <p><a href='https://github.com/strjkc/photos-frontend'>frontend</a></p>
+                        <p><a target='_blank' href='https://github.com/strjkc/photos-frontend'>frontend</a></p>
                     </div>
                     <div className={css(styles.sourceItemWrapper, styles.sourceItemWrapperChildren)}>
                         <img className={css(styles.githubLogo)} src={githubImage} alt='gitHub logo'></img>
-                        <p><a href='https://github.com/strjkc/photos'>backend</a></p>
+                        <p><a target='_blank' href='https://github.com/strjkc/photos'>backend</a></p>
                     </div>
                 </div>
             </div>
