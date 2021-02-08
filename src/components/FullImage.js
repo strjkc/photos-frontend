@@ -20,11 +20,12 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh',
+        position: 'fixed',
+        zIndex:'100',
+        height: '100%', 
         width: '100vw',
-        position: 'absolute',
-        zIndex: '5',
-        backgroundColor: 'gray'
+        backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+
     },
     download:{
         position: 'absolute',
